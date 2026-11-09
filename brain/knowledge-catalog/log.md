@@ -4,6 +4,10 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-09
 
+**Creation** — [E0005](reference/E0005-markers-are-genre-sensitive-and-the-checker-must.md) Markers are genre-sensitive and the checker must read paragraph prose
+
+**Creation** — [T0015](../tasks/voice/T0015-build-the-professional-profile-from-real-samples-and.md) Build the professional profile from real samples and apply it
+
 **Creation** — [T0014](../tasks/voice/T0014-license-the-project-mit-and-complete-the-plugin.md) License the project MIT and complete the plugin manifest
 
 **Creation** — [T0013](../tasks/voice/T0013-restate-the-hedging-rules-as-ownership-and-falsifiability.md) Restate the hedging rules as ownership and falsifiability

@@ -11,3 +11,4 @@ than gathered carries `resource:`. A plain measurement carries none.
 | id | Status | Title |
 |---|---|---|
 | [E0004](E0004-what-the-professional-craft-skill-could-not-say.md) | active | What the professional craft skill could not say without knowing the writer |
+| [E0005](E0005-markers-are-genre-sensitive-and-the-checker-must.md) | active | Markers are genre-sensitive and the checker must read paragraph prose |
