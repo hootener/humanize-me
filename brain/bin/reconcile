@@ -1,0 +1,206 @@
+#!/usr/bin/env python3
+"""Compare every task's status against what the repository actually shows.
+
+Usage:
+    brain/bin/reconcile [initiative] [--json]
+
+Exit 0 always. A task this cannot judge is a question for a person, not a
+failure — which is the whole point of the split below.
+
+## The split
+
+This produces **facts**; `/audit` supplies **judgement**. Same division as
+`bin/relevant` and `/grill-change`: a model asked to "check whether the
+statuses are right" will produce something status-shaped whether or not it
+looked, and a model handed "T0005 is In Progress, its branch merged three days
+ago, no journal entry in six" has been handed something it must engage with.
+
+So nothing here infers. It reports three buckets and refuses to collapse the
+third into either of the others:
+
+  * **reconciled** — status matches the evidence
+  * **determinable** — status is wrong and the evidence says so unambiguously
+  * **undeterminable** — honestly cannot tell
+
+The third bucket is the one that matters. A tool that guessed there would be
+wrong occasionally and trusted always, which is the worst combination.
+"""
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+TASKS = os.path.join(ROOT, 'tasks')
+
+DONE = {'Complete', 'Delivered'}
+STARTED = {'In Progress', 'Testing', 'Complete', 'Delivered'}
+
+
+def git(*args):
+    out = subprocess.run(['git', '-C', ROOT, *args], capture_output=True, text=True)
+    return out.stdout if out.returncode == 0 else ''
+
+
+def frontmatter(text):
+    if not text.startswith('---'):
+        return {}
+    end = text.find('\n---', 3)
+    if end == -1:
+        return {}
+    out, key = {}, None
+    for line in text[3:end].split('\n'):
+        if re.match(r'^\s+-\s', line) and key:
+            out.setdefault(key, [])
+            if isinstance(out[key], list):
+                out[key].append(line.strip()[2:].strip().strip('"\''))
+            continue
+        if ':' not in line or line.startswith(' '):
+            continue
+        k, v = line.split(':', 1)
+        key, v = k.strip(), v.strip()
+        if v.startswith('[') and v.endswith(']'):
+            out[key] = [x.strip().strip('"\'') for x in v[1:-1].split(',') if x.strip()]
+        elif v == '':
+        # A key with no inline value opens a block sequence. Setting it to ''
+        # here made the `- item` lines below fall through `isinstance(..., list)`
+        # and vanish — so `constrains:` written the way most people write it
+        # governed nothing, past a green lint, silently switching off the
+        # payoff the README is built around.
+            out[key] = []
+        else:
+            out[key] = v.strip('"\'')
+    return out
+
+
+def tasks(initiative=None):
+    if not os.path.isdir(TASKS):
+        return
+    for folder in sorted(os.listdir(TASKS)):
+        d = os.path.join(TASKS, folder)
+        if not os.path.isdir(d) or (initiative and folder != initiative):
+            continue
+        for name in sorted(os.listdir(d)):
+            if not re.match(r'^T\d{4}-.*\.md$', name):
+                continue
+            meta = frontmatter(open(os.path.join(d, name), encoding='utf-8').read())
+            if meta.get('type') == 'task':
+                meta['_rel'] = os.path.relpath(os.path.join(d, name), ROOT)
+                yield meta
+
+
+def mentions(ident):
+    """Commits whose subject or body names this task id."""
+    log = git('log', '--all', '--format=%H%x1f%s', f'--grep={ident}')
+    return [l.split('\x1f') for l in log.splitlines() if l]
+
+
+def merged(ident):
+    """Is a commit naming this task reachable from the default branch?"""
+    head = (git('symbolic-ref', '--quiet', 'refs/remotes/origin/HEAD').strip()
+            or 'refs/heads/main')
+    base = head.rsplit('/', 1)[-1]
+    for sha, _ in mentions(ident):
+        if git('merge-base', '--is-ancestor', sha, base) == '' and \
+           subprocess.run(['git', '-C', ROOT, 'merge-base', '--is-ancestor', sha, base],
+                          capture_output=True).returncode == 0:
+            return True
+    return False
+
+
+def judge(t):
+    """Return (bucket, one-line finding). Never a guess."""
+    ident, status = t.get('id', '?'), t.get('status', '?')
+    seen = mentions(ident)
+
+    if status in DONE and not seen:
+        return 'undeterminable', (f'{status}, but no commit names {ident}. Was it '
+                                  f'done under another id, or not done?')
+    if status == 'Not Ready' and seen:
+        return 'determinable', (f'Not Ready, but {len(seen)} commit(s) name {ident} — '
+                                f'work has started')
+    if status == 'Ready for Development' and seen:
+        return 'determinable', (f'Ready for Development, but {len(seen)} commit(s) name '
+                                f'{ident} — should be In Progress or later')
+    if status == 'Testing':
+        if merged(ident):
+            return 'determinable', f'Testing, and its commits are merged — candidate for Complete'
+        return 'reconciled', 'Testing, not yet merged'
+    if status == 'In Progress' and not t.get('claimed_by'):
+        return 'undeterminable', 'In Progress with no `claimed_by` — who holds it?'
+    if status in STARTED and seen:
+        return 'reconciled', f'{status}, {len(seen)} commit(s)'
+    return 'reconciled', status
+
+
+def orphans():
+    """Commits since the last audit that name no task at all.
+
+    Status drift makes the brain *wrong*. Orphan work makes it *incomplete*,
+    which is harder to notice because the graph still looks healthy.
+    """
+    known = {t.get('id') for t in tasks()}
+    out = []
+    for line in git('log', '--format=%h%x1f%s', '-50').splitlines():
+        if not line:
+            continue
+        sha, subject = line.split('\x1f')
+        if not any(k and k in subject for k in known):
+            out.append((sha, subject))
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser(description='Task status against the repository.')
+    ap.add_argument('initiative', nargs='?')
+    ap.add_argument('--json', action='store_true')
+    args = ap.parse_args()
+
+    buckets = {'reconciled': [], 'determinable': [], 'undeterminable': []}
+    for t in tasks(args.initiative):
+        bucket, note = judge(t)
+        buckets[bucket].append({'id': t.get('id'), 'title': t.get('title', ''),
+                                'status': t.get('status'), 'path': t['_rel'], 'note': note})
+
+    unlinked = orphans()
+
+    if args.json:
+        print(json.dumps({**buckets, 'orphan_commits': unlinked}, indent=2))
+        return 0
+
+    total = sum(len(v) for v in buckets.values())
+    if not total:
+        print('No tasks to reconcile.')
+    else:
+        print(f'{total} task(s): {len(buckets["reconciled"])} reconciled, '
+              f'{len(buckets["determinable"])} determinable, '
+              f'{len(buckets["undeterminable"])} undeterminable')
+        print()
+
+    for name, header in (('determinable', 'Wrong, and the evidence is unambiguous'),
+                         ('undeterminable', 'Cannot tell — these need a person')):
+        if buckets[name]:
+            print(f'  {header}')
+            for r in buckets[name]:
+                print(f"    {r['id']}  {r['title']}")
+                print(f"        {r['note']}")
+            print()
+
+    if unlinked:
+        print(f'  {len(unlinked)} recent commit(s) name no task:')
+        for sha, subject in unlinked[:8]:
+            print(f'    {sha}  {subject[:72]}')
+        if len(unlinked) > 8:
+            print(f'    … and {len(unlinked) - 8} more')
+        print()
+        print('  Unrecorded work, or work done under a task that was never cited.')
+
+    if total and not buckets['determinable'] and not buckets['undeterminable']:
+        print('  Every status matches the repository.')
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -1,0 +1,347 @@
+#!/usr/bin/env python3
+"""Find what the brain already says about a proposed change.
+
+Usage:
+    brain/bin/relevant "add retrieval to the agent"
+    brain/bin/relevant --json "let the model choose the document path"
+    brain/bin/relevant --limit 12 "cache the eval results"
+
+Exit 0 always: having nothing to say about a change is an answer, not an error.
+
+This exists so that `/grill-change` is demonstrably reading the record rather
+than free-associating. A model asked to "consider the decisions" will produce
+something decision-shaped whether or not it looked; a model handed
+`0010-full-corpus-grounding.md` with a line number has been handed a fact it
+has to engage with. Every pushback the skill makes is supposed to cite one of
+these hits, and a reader can check the citation.
+
+No dependencies, same as the rest of brain/bin.
+
+## How it ranks
+
+Not a search engine. The corpus is ~90 files and the whole thing is read on
+every call, which takes milliseconds and avoids an index that could go stale —
+the failure this project keeps hitting.
+
+Scoring is deliberately crude and the weighting is the only opinionated part:
+a term in a **title** outranks the same term appearing twenty times in a body.
+A decision is titled with its claim ("The agent receives the whole corpus at a
+commit rather than retrieving from it"), so a title match usually means the
+document is *about* the thing being proposed, while a body match often means it
+merely mentions it in passing.
+"""
+import argparse
+import json
+import os
+import re
+import sys
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+SKIP_DIRS = {'bin', '.git', 'node_modules', 'templates', 'skills', 'example', 'handoff', 'feedback', 'docs', 'hooks'}
+
+# Weights. Title dominates on purpose; see the module docstring.
+W_TITLE = 10
+W_DESCRIPTION = 4
+W_TAG = 3
+W_BODY = 1
+
+# A term has to carry some signal. These appear in most of the corpus and
+# would match everything, which is the same as matching nothing.
+STOP = {
+    'the', 'and', 'for', 'with', 'that', 'this', 'from', 'into', 'our', 'out',
+    'how', 'why', 'what', 'when', 'where', 'can', 'should', 'would', 'add',
+    'make', 'change', 'changes', 'use', 'using', 'new', 'more', 'less', 'not',
+    'but', 'all', 'any', 'are', 'was', 'its', 'it', 'a', 'an', 'to', 'of',
+    'in', 'on', 'we', 'i', 'is', 'be', 'do', 'does', 'so', 'if', 'or',
+}
+
+# A tiebreak, not the sort. Ordering by kind first was the first version and it
+# was wrong in the way that matters: a query about retrieval filled every slot
+# with experiments and pushed out
+# `0010-full-corpus-grounding.md` — the decision titled "The agent receives the
+# whole corpus at a commit rather than retrieving from it", which is the single
+# entry the proposal contradicts. Relevance leads; kind breaks ties; and a cap
+# per kind keeps one loud family from crowding the rest out.
+KIND_ORDER = {
+    'evidence': 0,     # what was actually observed outranks what was intended
+    'decision': 1,
+    'principle': 1,
+    'goal': 2,
+    'task': 3,
+    'spec': 4,
+    'plan': 4,
+    'glossary': 5,
+}
+
+
+def frontmatter(text):
+    """The flat YAML the templates use. Same parser shape as bin/lint."""
+    if not text.startswith('---'):
+        return {}, text
+
+    end = text.find('\n---', 3)
+    if end == -1:
+        return {}, text
+
+    meta = {}
+    for line in text[3:end].split('\n'):
+        if ':' not in line or line.strip().startswith('#'):
+            continue
+        key, _, value = line.partition(':')
+        meta[key.strip()] = value.strip().strip('"\'')
+
+    return meta, text[end + 4:]
+
+
+def terms(query):
+    words = re.findall(r"[a-z0-9][a-z0-9_\-]*", query.lower())
+    return [w for w in dict.fromkeys(words) if len(w) > 2 and w not in STOP]
+
+
+def kind_of(path, meta):
+    """What sort of entry this is, for ordering and for the reader."""
+    declared = (meta.get('type') or '').strip()
+
+    # This used to sniff `/experiments/` and `/reference/` out of the path,
+    # because `context` covered a measurement and a stack fact alike and the
+    # ordering needed to tell them apart. D0002 named `evidence`, so the
+    # declared type is now enough.
+    return declared or 'untyped'
+
+
+def entries():
+    for base, dirs, files in os.walk(ROOT):
+        dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
+
+        for name in sorted(files):
+            if not name.endswith('.md'):
+                continue
+
+            path = os.path.join(base, name)
+            rel = os.path.relpath(path, os.path.dirname(ROOT))
+
+            try:
+                text = open(path, encoding='utf-8').read()
+            except OSError:
+                continue
+
+            meta, body = frontmatter(text)
+            yield rel, meta, body
+
+
+def score(meta, body, wanted):
+    """Points, plus which terms actually hit — the second half is the useful one."""
+    title = (meta.get('title') or '').lower()
+    description = (meta.get('description') or '').lower()
+    tags = (meta.get('tags') or '').lower()
+    low = body.lower()
+
+    points = 0
+    hits = []
+
+    for term in wanted:
+        n = 0
+        if term in title:
+            n += W_TITLE
+        if term in description:
+            n += W_DESCRIPTION
+        if term in tags:
+            n += W_TAG
+
+        occurrences = low.count(term)
+        if occurrences:
+            # Capped. A term repeated forty times in one file is a file about
+            # that term, not a file forty times as relevant as its neighbour.
+            n += min(occurrences, 5) * W_BODY
+
+        if n:
+            points += n
+            hits.append(term)
+
+    return points, hits
+
+
+# Where a decision's own claim lives, best first. `# Context` is deliberately
+# last: it is where a decision states the position it is about to reject, so a
+# line lifted from it argues the opposite of the document it came from.
+CLAIM_SECTIONS = ['# Decision', '# Principle', '# Goal', '# Alternatives',
+                  '# Consequences', '# Implications']
+
+
+def _sections(body):
+    """Body split into (heading, text). Headings are the template's own."""
+    out, current, buf = [], '', []
+    for line in body.split('\n'):
+        if line.startswith('# '):
+            out.append((current, '\n'.join(buf)))
+            current, buf = line.strip(), []
+        else:
+            buf.append(line)
+    out.append((current, '\n'.join(buf)))
+    return out
+
+
+def _first_line(text, term):
+    for line in text.split('\n'):
+        stripped = line.strip()
+        if term in stripped.lower() and len(stripped) > 20 \
+           and not stripped.startswith(('|', '>', '```')):
+            return re.sub(r'\s+', ' ', stripped.lstrip('-* ')).strip()[:200]
+    return None
+
+
+def line_for(body, term, meta=None):
+    """The line to quote — the document's claim, not its first keyword match.
+
+    This returned the first matching line in document order, which on a
+    template-shaped decision is inside `# Context`. A real case: a decision
+    titled "Voice skills govern human-facing prose only" was quoted as *"A
+    voice library could plausibly cover both"* — the position it exists to
+    reject — which read alone suggests the record is open to exactly what the
+    decision forbids. Ranking was right; the evidence inverted the answer.
+
+    `invariant:` is preferred over any body line: it is one sentence of what
+    must stay true, written for this purpose.
+    """
+    if meta:
+        inv = (meta.get('invariant') or '').strip()
+        if inv:
+            return inv[:200]
+
+    sections = _sections(body)
+    by_heading = {h: t for h, t in sections}
+
+    for heading in CLAIM_SECTIONS:
+        if heading in by_heading:
+            hit = _first_line(by_heading[heading], term)
+            if hit:
+                return hit
+
+    # Anything but Context, then Context as the last resort — better a
+    # misleading quote than none, provided everything else has been tried.
+    for heading, text in sections:
+        if heading != '# Context':
+            hit = _first_line(text, term)
+            if hit:
+                return hit
+    return _first_line(by_heading.get('# Context', ''), term)
+
+
+def main():
+    ap = argparse.ArgumentParser(description='What the brain already says about a proposed change.')
+    ap.add_argument('query', nargs='+', help='the change, in your own words')
+    ap.add_argument('--limit', type=int, default=8)
+    ap.add_argument('--json', action='store_true')
+    args = ap.parse_args()
+
+    query = ' '.join(args.query)
+    wanted = terms(query)
+
+    if not wanted:
+        print('Nothing searchable in that. Describe the change in a few more words.', file=sys.stderr)
+        return 0
+
+    found = []
+
+    for rel, meta, body in entries():
+        points, hits = score(meta, body, wanted)
+
+        if points == 0:
+            continue
+
+        kind = kind_of(rel, meta)
+        found.append({
+            'path': rel,
+            'kind': kind,
+            'title': meta.get('title') or os.path.basename(rel),
+            'status': meta.get('status') or '',
+            'score': points,
+            'matched': hits,
+            'line': line_for(body, hits[0], meta) if hits else None,
+        })
+
+    found.sort(key=lambda e: (-e['score'], KIND_ORDER.get(e['kind'], 9)))
+
+    # At most three from any one kind before the next gets a look in. Seven
+    # experiments that all mention retrieval are one fact about the record,
+    # not seven things to answer for.
+    seen = {}
+    kept = []
+
+    for e in found:
+        n = seen.get(e['kind'], 0)
+        if n >= 3:
+            continue
+        seen[e['kind']] = n + 1
+        kept.append(e)
+
+    found = sorted(kept, key=lambda e: (KIND_ORDER.get(e['kind'], 9), -e['score']))[:args.limit]
+
+    if args.json:
+        print(json.dumps({'query': query, 'terms': wanted, 'hits': found}, indent=2))
+        return 0
+
+    print(f'Brain hits for: {query}')
+    print(f'  matched on: {", ".join(wanted)}')
+    print()
+
+    if not found:
+        print('  Nothing. Either this is genuinely new ground, or it is described')
+        print('  in words the record does not use — try the domain term for it.')
+        return 0
+
+    for e in found:
+        print(f"  [{e['kind']}] {e['title']}")
+        print(f"      {e['path']}{('  · ' + e['status']) if e['status'] else ''}")
+        if e['line']:
+            print(f"      “{e['line']}”")
+        print()
+
+    print('  Read these before arguing with them. A pushback that cites one of')
+    print('  these paths is checkable; one that does not is an opinion.')
+
+    decisions_index()
+    return 0
+
+
+def decisions_index():
+    """Every decision, always, whatever the search thought.
+
+    **The search misses the ones that matter most.** A proposal phrased as
+    "let the model choose which document to write to" scores nothing against
+    `0007-utterances-are-bound-not-classified.md`, because the proposal says
+    *choose* and the decision says *classify* — and 0007 is the one decision
+    that proposal contradicts, having been broken twice already.
+
+    Term matching cannot close that gap and a synonym list would only move it.
+    Seventeen titles is four lines of output, so the whole index ships every
+    time and the reader scans it themselves. The search narrows; this makes
+    sure nothing is hidden by the narrowing.
+    """
+    decisions = []
+
+    folder = os.path.join(ROOT, 'knowledge-catalog', 'decisions')
+
+    if not os.path.isdir(folder):
+        return 0
+
+    for name in sorted(os.listdir(folder)):
+        if not name.endswith('.md') or name == 'index.md':
+            continue
+
+        meta, _ = frontmatter(open(os.path.join(folder, name), encoding='utf-8').read())
+        decisions.append((name.split('-')[0], meta.get('title') or name))
+
+    print()
+    print(f'  Every decision on record ({len(decisions)}) — the search above can miss the')
+    print('  one that matters, because the record uses its own vocabulary:')
+    print()
+
+    for number, title in decisions:
+        print(f'    {number}  {title}')
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

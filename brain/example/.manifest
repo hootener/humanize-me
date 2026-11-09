@@ -1,0 +1,17 @@
+# Written by bin/adopt at first install. Everything in example/
+# should appear here; anything else arrived by accident.
+knowledge-catalog/decisions/D0001-claims-must-be-checkable.md
+knowledge-catalog/decisions/D0002-four-categories.md
+knowledge-catalog/decisions/D0003-identifiers.md
+knowledge-catalog/decisions/D0004-placement-and-install.md
+knowledge-catalog/decisions/D0005-intent-layer-wiring.md
+knowledge-catalog/decisions/D0006-review-split.md
+knowledge-catalog/decisions/D0007-status-ownership.md
+knowledge-catalog/decisions/D0008-a-blocker-is-a-node.md
+knowledge-catalog/decisions/D0009-an-open-question-is-a-task.md
+knowledge-catalog/goals/G0001-a-brain-others-can-adopt.md
+knowledge-catalog/reference/E0001-brain-in-practice.md
+knowledge-catalog/reference/E0002-portability-findings.md
+knowledge-catalog/reference/E0003-adoption-greenfield.md
+plans/formalize
+tasks/formalize

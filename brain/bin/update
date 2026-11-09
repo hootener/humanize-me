@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+"""Bring the generic half of this brain up to date from a fresh copy.
+
+Usage:
+    brain/bin/update ~/src/brain-template       # a clone you already have
+    brain/bin/update --from https://github.com/hootener/brain.git
+    brain/bin/update --dry-run <source>
+    brain/bin/update --list                     # what counts as generic
+
+Exit 1 if the source is missing or does not look like a brain.
+
+## Why this is a tool
+
+It was a shell recipe in the README, and it was wrong in three ways at once:
+it pulled a clone in `/tmp`, which is the one directory guaranteed not to
+survive until an update; it looped over **directories**, so `INIT.md` — a
+top-level file — never arrived; and because `rm -rf skills` had already taken
+the old `skills/brain-init/` away, an updated install ended with neither the
+skill nor the document, while the very next instruction was to follow
+`brain/INIT.md`.
+
+The commit that introduced that hole edited the README in five other places
+and left the recipe byte-identical, because nothing runs a recipe. `bin/update`
+exists so `bin/selftest` can.
+
+## What is generic
+
+The half upstream owns. Everything else — your goals, decisions, specs,
+reference, tasks, plans, journals, brief, `config.md`, `graph.html`, and
+`example/` once you have one — is yours and is never touched.
+"""
+import argparse
+import filecmp
+import re
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# The single definition of "generic". `bin/selftest` asserts that a fresh
+# install contains nothing generic this list has missed, so a new top-level
+# file cannot quietly fall out of the update the way INIT.md did.
+GENERIC_DIRS = ['bin', 'skills', 'hooks', 'docs', '.github',
+                'knowledge-catalog/reference/agent-skills/templates']
+GENERIC_FILES = ['INIT.md', 'README.md', 'CLAUDE.md', '.gitignore',
+                 'knowledge-catalog/howto.md',
+                 'knowledge-catalog/reference/agent-skills/index.md',
+                 'knowledge-catalog/reference/agent-skills/tracker.md',
+                 'knowledge-catalog/reference/agent-skills/domain.md',
+                 'knowledge-catalog/reference/agent-skills/triage-labels.md',
+                 'brief/README.md', 'work/README.md', 'tasks/TODO.md',
+                 'feedback/README.md']
+
+# Yours. Named so the intent is readable, and so a reader can check the claim.
+NEVER_TOUCHED = ['knowledge-catalog/goals', 'knowledge-catalog/decisions',
+                 'knowledge-catalog/specs', 'knowledge-catalog/reference/E*.md',
+                 'knowledge-catalog/glossary.md', 'knowledge-catalog/log.md',
+                 'tasks/<initiative>', 'plans', 'work', 'brief', 'example',
+                 'feedback', 'config.md', 'graph.html']
+
+
+def fetch(url):
+    tmp = tempfile.mkdtemp(prefix='brain-update-')
+    dest = os.path.join(tmp, 'template')
+    r = subprocess.run(['git', 'clone', '--depth', '1', '-q', url, dest],
+                       capture_output=True, text=True)
+    if r.returncode:
+        print(f'clone failed: {r.stderr.strip()}', file=sys.stderr)
+        sys.exit(1)
+    return dest
+
+
+def differs(a, b):
+    if os.path.isfile(a) and os.path.isfile(b):
+        return not filecmp.cmp(a, b, shallow=False)
+    return True
+
+
+def main():
+    ap = argparse.ArgumentParser(description='Update the generic half of this brain.')
+    ap.add_argument('source', nargs='?', help='a checkout of the template')
+    ap.add_argument('--from', dest='url', help='clone this URL instead')
+    ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--list', action='store_true')
+    args = ap.parse_args()
+
+    if args.list:
+        print('generic — replaced by an update:')
+        for d in GENERIC_DIRS:
+            print(f'  {d}/')
+        for f in GENERIC_FILES:
+            print(f'  {f}')
+        print('\nyours — never touched:')
+        for n in NEVER_TOUCHED:
+            print(f'  {n}')
+        return 0
+
+    src = fetch(args.url) if args.url else args.source
+    if not src:
+        print('Give a source: a path to a template checkout, or --from <url>.',
+              file=sys.stderr)
+        return 1
+    if not os.path.isfile(os.path.join(src, 'bin', 'lint')):
+        print(f'{src} does not look like a brain (no bin/lint).', file=sys.stderr)
+        return 1
+
+    changed, missing = [], []
+
+    for rel in GENERIC_DIRS:
+        s, d = os.path.join(src, rel), os.path.join(ROOT, rel)
+        if not os.path.isdir(s):
+            missing.append(rel)
+            continue
+        if not args.dry_run:
+            shutil.rmtree(d, ignore_errors=True)
+            shutil.copytree(s, d)
+        changed.append(rel + '/')
+
+    for rel in GENERIC_FILES:
+        s, d = os.path.join(src, rel), os.path.join(ROOT, rel)
+        if not os.path.isfile(s):
+            missing.append(rel)
+            continue
+        if differs(s, d):
+            changed.append(rel)
+            if not args.dry_run:
+                os.makedirs(os.path.dirname(d), exist_ok=True)
+                shutil.copy2(s, d)
+
+    # config.md is generic prose wrapped around install-time values. Copying
+    # it whole would lose mode/repos/brain_revision; not copying it froze a
+    # sentence pointing at a skill that no longer exists. So: upstream's body,
+    # this install's frontmatter.
+    local_cfg = os.path.join(ROOT, 'config.md')
+    src_cfg = os.path.join(src, 'config.md')
+    if os.path.isfile(src_cfg) and os.path.isfile(local_cfg):
+        mine = open(local_cfg, encoding='utf-8').read()
+        theirs = open(src_cfg, encoding='utf-8').read()
+        keep = mine[:mine.index('\n---', 3) + 5] if '\n---' in mine[3:] else ''
+        body = theirs[theirs.index('\n---', 3) + 5:] if '\n---' in theirs[3:] else ''
+        if keep and body and (keep + body) != mine:
+            changed.append('config.md (prose only; your values kept)')
+            if not args.dry_run:
+                open(local_cfg, 'w', encoding='utf-8').write(keep + body)
+
+    # Record what we came from, so "did the update land" is a glance.
+    rev = subprocess.run(['git', '-C', src, 'rev-parse', '--short', 'HEAD'],
+                         capture_output=True, text=True)
+    if rev.returncode == 0 and not args.dry_run:
+        t = open(local_cfg, encoding='utf-8').read()
+        t = re.sub(r'^brain_revision: .*$', f'brain_revision: "{rev.stdout.strip()}"',
+                   t, count=1, flags=re.M)
+        open(local_cfg, 'w', encoding='utf-8').write(t)
+
+    verb = 'would update' if args.dry_run else 'updated'
+    for c in changed:
+        print(f'  {verb} {c}')
+    for m in missing:
+        print(f'  absent from the source: {m}')
+
+    if args.dry_run:
+        print(f'\n  --dry-run: nothing written.')
+        return 0
+
+    print(f'\n  {len(changed)} path(s) updated. Your catalog, tasks, plans and')
+    print('  config were not touched.')
+
+    # The generic documents arrived citing knowledge-catalog/, where the
+    # adopter's own nodes now live. Put the citations back into example/.
+    subprocess.run([os.path.join(ROOT, 'bin', 'adopt'), '--repoint-only'],
+                   capture_output=True)
+
+    # The hook and the workflow are copies that live outside the brain, so an
+    # update of the brain leaves them on the old version. Refresh the ones
+    # that are already installed; never install one that is not.
+    host = os.path.dirname(ROOT)
+    wf = os.path.join(host, '.github', 'workflows', 'brain.yml')
+    if os.path.isfile(wf):
+        shutil.copy2(os.path.join(ROOT, '.github', 'workflows', 'brain.yml'), wf)
+        print('  refreshed .github/workflows/brain.yml')
+    hook = os.path.join(host, '.git', 'hooks', 'post-commit')
+    if os.path.isfile(hook) and not os.path.islink(hook):
+        shutil.copy2(os.path.join(ROOT, 'hooks', 'post-commit'), hook)
+        print('  refreshed .git/hooks/post-commit')
+
+    for tool in ('index', 'graph-build'):
+        subprocess.run([os.path.join(ROOT, 'bin', tool)], capture_output=True)
+    code = subprocess.run([os.path.join(ROOT, 'bin', 'doctor')]).returncode
+    print('\n  Then run `bin/lint`. Upstream nodes cited by the generic documents')
+    print('  live in `example/`, which an update does not bring; a link into it')
+    print('  may dangle, and that is better than resolving to a different node.')
+    return code
+
+
+if __name__ == '__main__':
+    sys.exit(main())
