@@ -4,6 +4,10 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-09
 
+**Creation** — [T0013](../tasks/voice/T0013-restate-the-hedging-rules-as-ownership-and-falsifiability.md) Restate the hedging rules as ownership and falsifiability
+
+**Creation** — [D0020](decisions/D0020-craft-governs-ownership-and-falsifiability-a-profile-governs.md) Craft governs ownership and falsifiability; a profile governs how much
+
 **Creation** — [E0004](reference/E0004-what-the-professional-craft-skill-could-not-say.md) What the professional craft skill could not say without knowing the writer
 
 **Creation** — [T0012](../tasks/voice/T0012-write-the-professional-register-craft-skill.md) Write the professional register craft skill

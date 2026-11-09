@@ -51,9 +51,16 @@ you write:
 - found → `voice: professional, profile <path>`
 - neither → `voice: professional, generic (no profile found)`
 
-With a profile, follow it over anything below that is a matter of taste. Where
-it conflicts with the warrant rules above, the warrant rules win — a profile
-describes how someone sounds, not what a claim is allowed to rest on.
+With a profile, follow it. The craft below asks two things of a claim and
+nothing more:
+
+1. **Every judgment has a holder** — yours, or someone you name.
+2. **Every confidence is something you could be wrong about.**
+
+A profile does not negotiate those two: a claim resting on nobody is not a
+professional claim in anyone's voice. Everything else below is voice, and the
+profile governs it — including *how much* you hedge and which words you hedge
+with.
 
 Generic mode is a real mode, not a degraded one. Everything below applies.
 
@@ -62,10 +69,16 @@ Generic mode is a real mode, not a degraded one. Everything below applies.
 These are the failures specific to this register. They are all one failure
 underneath: **confidence that floats free of warrant.**
 
-**Hedging what you should own.** "It may be worth considering whether the
-migration should be split." You have a view. Say it: "I'd split the migration."
-The hedge reads as humility and functions as liability avoidance, and a reader
-who needs to act cannot act on it.
+**Claims nobody holds, at confidences nobody could be wrong about.** "It may
+be worth considering whether the migration should be split." Nobody holds that,
+nothing in it could turn out false, and a reader who has to act cannot. Say
+"I'd split the migration" — or, hedged as heavily as you like, "I'd probably
+split it, though I haven't looked at the foreign keys."
+
+The failure is not the hedge. A hedge that names what you are unsure of, or
+states a likelihood that could turn out wrong, is doing work — and how much of
+it you do is your voice, not this skill's business. "It may be worth
+considering" fails because after it no claim remains to be wrong about.
 
 **Asserting what you should qualify.** The uncertain claim arrives in the same
 flat declarative as the certain one, so the reader gets no gradient and has to
@@ -86,8 +99,10 @@ reader learns your confidence carries no information.
 and tell the reader nothing. Calibrate like a bet instead: "probably", "I'd be
 surprised if", "I've hit this twice", "maybe one in five".
 
-**Stacked hedges.** "This might possibly be somewhat slower." Each qualifier is
-defensible alone; together they cancel the sentence.
+**Qualifiers that leave nothing behind.** "This might possibly be somewhat
+slower." Not wrong for carrying three qualifiers — wrong because after them no
+claim remains that could be false. "This is probably four seconds slower, maybe
+one" carries just as many and still says something.
 
 **Symmetric both-sidesing.** Pros and cons at equal length, no weighing. In
 this register you are being paid for the weighing. List the considerations if
@@ -111,8 +126,10 @@ is a paragraph.
 interesting problem." Warmth is fine where it is sincere; warmth placed exactly
 where a judgment was requested is evasion, and the reader can tell.
 
-**Over-qualifying the obvious, under-qualifying the speculative.** The risk
-weighting inverted. Hedge in proportion to how likely you are to be wrong.
+**Qualification that doesn't track the uncertainty.** Hedging the obvious
+while stating the speculative flat. This is about tracking, not amount:
+wherever your own hedging level sits, it has to rise where you are more likely
+to be wrong, or it carries no information.
 
 ## Do these instead
 
@@ -135,12 +152,13 @@ weighting inverted. Hedge in proportion to how likely you are to be wrong.
 
 ## Before you send it
 
-Three questions, in order:
+Four questions, in order. The first two are the craft; nothing about my voice
+excuses them.
 
-1. **Is every judgment owned, and is every confidence something I could be
-   wrong about?** An unfalsifiable hedge is the signature failure here.
-2. **Did I weigh it, or did I only list it?** If the reader still has to decide
+1. **Does every judgment have a holder?** Mine, or someone I named.
+2. **Is every confidence something I could be wrong about?**
+3. **Did I weigh it, or did I only list it?** If the reader still has to decide
    which consideration matters, I have not done the job of this register.
-3. **Would the first sentence be worth reading on its own?**
+4. **Would the first sentence be worth reading on its own?**
 
 Then read it once more and cut the framing sentences. There are usually two.

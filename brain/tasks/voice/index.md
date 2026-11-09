@@ -4,5 +4,6 @@ Tasks for the **voice** initiative. `brain/bin/status voice` shows what is claim
 
 | id | Status | Title |
 |---|---|---|
-| [T0011](T0011-ship-the-plugin-skeleton-so-the-library-installs.md) | In Progress | Ship the plugin skeleton so the library installs |
-| [T0012](T0012-write-the-professional-register-craft-skill.md) | Not Ready | Write the professional register craft skill |
+| [T0011](T0011-ship-the-plugin-skeleton-so-the-library-installs.md) | Testing | Ship the plugin skeleton so the library installs |
+| [T0012](T0012-write-the-professional-register-craft-skill.md) | Testing | Write the professional register craft skill |
+| [T0013](T0013-restate-the-hedging-rules-as-ownership-and-falsifiability.md) | Not Ready | Restate the hedging rules as ownership and falsifiability |

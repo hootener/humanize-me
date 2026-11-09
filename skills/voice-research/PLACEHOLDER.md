@@ -15,3 +15,11 @@ This directory holds no `SKILL.md` on purpose, for the reason given in
 
 Written after the professional register settles the shape — see
 `brain/tasks/voice/`.
+
+## Inherited before it is written
+
+[D0020](../../brain/knowledge-catalog/decisions/D0020-craft-governs-ownership-and-falsifiability-a-profile-governs.md)
+applies to this register too. The craft here may require that a judgment has a
+holder and that a confidence is something the writer could be wrong about. It
+may not legislate how much the writer hedges or which words they hedge with —
+that is voice, and the profile governs it.
