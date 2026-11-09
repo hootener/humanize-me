@@ -8,4 +8,6 @@ An evidence node that corrects something upstream carries `amends:`; one that
 records a looking-back pass carries `reviewed:`; one that was given rather
 than gathered carries `resource:`. A plain measurement carries none.
 
-*(none yet — `brain/bin/new evidence "<what you observed>"`)*
+| id | Status | Title |
+|---|---|---|
+| [E0004](E0004-what-the-professional-craft-skill-could-not-say.md) | active | What the professional craft skill could not say without knowing the writer |

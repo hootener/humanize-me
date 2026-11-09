@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "humanize-me",
+  "owner": {
+    "name": "Eli Hooten"
+  },
+  "metadata": {
+    "description": "Voice skills for agents writing prose a person will read.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "humanize-me",
+      "source": "./",
+      "version": "0.1.0",
+      "description": "Three register skills — casual, professional, research — distinguished by what a claim has to rest on. Each works generically, and sounds like you once a voice profile exists."
+    }
+  ]
+}

@@ -4,6 +4,12 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-09
 
+**Creation** — [E0004](reference/E0004-what-the-professional-craft-skill-could-not-say.md) What the professional craft skill could not say without knowing the writer
+
+**Creation** — [T0012](../tasks/voice/T0012-write-the-professional-register-craft-skill.md) Write the professional register craft skill
+
+**Creation** — [T0011](../tasks/voice/T0011-ship-the-plugin-skeleton-so-the-library-installs.md) Ship the plugin skeleton so the library installs
+
 **Creation** — [D0019](decisions/D0019-humanize-me-ships-as-a-claude-code-plugin.md) humanize-me ships as a Claude Code plugin and the profile lives at user scope
 
 **Creation** — [D0018](decisions/D0018-a-voice-profile-states-its-claims-checkably.md) A voice profile states its claims checkably
