@@ -95,3 +95,32 @@ Three requirements the format does not currently have, all from
   corpus it was measured on
 - a profile needs an **unstable** section, for habits the corpus contradicts
   itself on — asserting one would have produced a confident false marker
+
+## 2026-11-09 — operator review: rejected, and why
+
+Shown both documents in a browser beside their originals, the operator rejected
+the result: *"i think it sounds like you doing an impression of me."*
+
+The map document had passed 8 of 8 markers. That is the finding
+([E0006](../../knowledge-catalog/reference/E0006-the-operator-rejected-a-profile-that-passed-every.md)):
+a full marker pass is not evidence that a profile works.
+
+Two causes, neither measurable:
+
+- **Headings were never a measured population.** The profile described paragraph
+  moves and nothing else, so paragraph moves were applied to a heading. The
+  corpus had the answer all along — the operator's headings take three plain
+  shapes and never withhold their subject, and their proposed fix "Why we built
+  a map" nearly matches "Why did Codecov build Impact Analysis?" already in the
+  training set. Now [D0021](../../knowledge-catalog/decisions/D0021-a-profile-is-derived-per-text-population-not.md).
+- **Landing sentences coined instead of compressed.** The profile named the
+  rhythm correctly and reproduced it wrongly: four inventions arrived at the
+  landing position carrying claims the paragraphs had not made. The rule is now
+  "compress, never coin".
+
+Fixed in the profile and in both documents. Both still pass their markers, the
+map at 8 of 8 and the paperwork at 7 of 8 on the genre-bound median.
+
+This is the evidence that moves the held-out regeneration diff from nice-to-have
+to the next thing worth doing: it is the only check in the design that could
+have caught either cause, and it still has not run.

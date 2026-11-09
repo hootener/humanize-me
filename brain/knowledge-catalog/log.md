@@ -4,6 +4,10 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-09
 
+**Creation** — [E0006](reference/E0006-the-operator-rejected-a-profile-that-passed-every.md) The operator rejected a profile that passed every marker
+
+**Creation** — [D0021](decisions/D0021-a-profile-is-derived-per-text-population-not.md) A profile is derived per text population, not from paragraphs alone
+
 **Creation** — [E0005](reference/E0005-markers-are-genre-sensitive-and-the-checker-must.md) Markers are genre-sensitive and the checker must read paragraph prose
 
 **Creation** — [T0015](../tasks/voice/T0015-build-the-professional-profile-from-real-samples-and.md) Build the professional profile from real samples and apply it
