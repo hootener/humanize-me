@@ -74,4 +74,16 @@ without ever writing a copy to disk.
 The reasoning lives in `brain/`, as linked markdown rather than as folklore.
 Start at `brain/knowledge-catalog/goals/` for what this is for, and
 `brain/knowledge-catalog/decisions/` for why it is built this way — D0013
-through D0019 cover the architecture above.
+through D0020 cover the architecture above.
+
+## License
+
+MIT — see [LICENSE](LICENSE). That covers this repository's own work: the
+register skills, the plugin manifests, this README and the project record under
+`brain/knowledge-catalog/`, `brain/plans/` and `brain/tasks/`.
+
+It does not cover the generic half of `brain/` — `brain/bin/`,
+`brain/skills/`, the templates and the scaffolding — which is forked from an
+upstream template at the revision recorded in `brain/config.md`. That
+upstream states no license, so its terms are its author's to give and are not
+restated here.

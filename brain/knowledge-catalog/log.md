@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-09
 
+**Creation** — [T0014](../tasks/voice/T0014-license-the-project-mit-and-complete-the-plugin.md) License the project MIT and complete the plugin manifest
+
 **Creation** — [T0013](../tasks/voice/T0013-restate-the-hedging-rules-as-ownership-and-falsifiability.md) Restate the hedging rules as ownership and falsifiability
 
 **Creation** — [D0020](decisions/D0020-craft-governs-ownership-and-falsifiability-a-profile-governs.md) Craft governs ownership and falsifiability; a profile governs how much

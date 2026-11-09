@@ -71,3 +71,10 @@ git remote and no LICENSE file, so asserting any of them would have put an
 unchecked claim in a manifest — which is
 [D0001](../../example/knowledge-catalog/decisions/D0001-claims-must-be-checkable.md)
 applied to packaging. Both need deciding before a first release.
+
+## 2026-11-09 — licence gap closed, remote still open
+
+The `license` omission recorded above is resolved by
+[T0014](T0014-license-the-project-mit-and-complete-the-plugin.md): MIT, with a
+file backing it. `repository` and `homepage` stay omitted — there is still no
+git remote, and the README's install command still reads `<owner>/humanize-me`.
