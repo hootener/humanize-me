@@ -18,3 +18,4 @@ decision with no alternatives and no expiry. Superseded, never deleted.
 | [D0019](D0019-humanize-me-ships-as-a-claude-code-plugin.md) | decision | humanize-me ships as a Claude Code plugin and the profile lives at user scope |
 | [D0020](D0020-craft-governs-ownership-and-falsifiability-a-profile-governs.md) | decision | Craft governs ownership and falsifiability; a profile governs how much |
 | [D0021](D0021-a-profile-is-derived-per-text-population-not.md) | decision | A profile is derived per text population, not from paragraphs alone |
+| [D0022](D0022-the-preference-signal-is-named-defects-never-blind.md) | decision | The preference signal is named defects, never blind rankings |

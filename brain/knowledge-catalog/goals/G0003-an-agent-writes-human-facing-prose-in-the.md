@@ -5,7 +5,8 @@ title: "An agent writes human-facing prose in the operator's own voice"
 description: "Prose an agent writes for a person to read sounds like the person who installed the library, at the right level of warrant for what the prose is doing."
 timestamp: "2026-11-09"
 tags: [voice, registers, profile]
-status: active
+superseded_by: G0004-structure-sounds-like-the-operator-and-prose-is.md
+status: superseded
 ---
 
 # Goal
@@ -46,3 +47,17 @@ prose with a human reader. Agent-facing text is left alone.
 - A register's profile says how well grounded it is, so a thin one is visible
   as thin rather than passing as settled
   ([D0018](../decisions/D0018-a-voice-profile-states-its-claims-checkably.md)).
+
+# Superseded — 2026-11-10
+
+Replaced by [G0004](G0004-structure-sounds-like-the-operator-and-prose-is.md).
+
+Not because the ambition was wrong, but because the third signal above —
+*"a reader who knows the operator's writing… cannot reliably sort them"* — was
+**met, and meant nothing.** In nine blind trials the operator identified his own
+writing at exactly chance and ranked his own published prose last in four of six
+prose trials. A success condition that a writer satisfies by failing to
+recognise himself is not a success condition.
+
+The measurement also found that fidelity is detectable in structure and not in
+prose, so the single target here was two targets wearing one goal's frontmatter.

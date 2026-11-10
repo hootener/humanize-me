@@ -4,6 +4,10 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-10
 
+**Creation** — [D0022](decisions/D0022-the-preference-signal-is-named-defects-never-blind.md) The preference signal is named defects, never blind rankings
+
+**Creation** — [G0004](goals/G0004-structure-sounds-like-the-operator-and-prose-is.md) Structure sounds like the operator and prose is prose they would sign
+
 **Creation** — [E0009](reference/E0009-the-profile-works-on-headings-and-not-on.md) The profile works on headings and not on prose
 
 **Creation** — [E0008](reference/E0008-the-profile-did-not-beat-the-control-and.md) The profile did not beat the control and the operator scored at chance
