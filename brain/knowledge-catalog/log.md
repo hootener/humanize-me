@@ -4,6 +4,10 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-10
 
+**Creation** — [E0010](reference/E0010-a-pooled-marker-floor-pushed-output-away-from.md) A pooled marker floor pushed output away from the operator's real register
+
+**Creation** — [T0018](../tasks/voice/T0018-diagnose-why-the-no-guidance-control-outranked-the.md) Diagnose why the no-guidance control outranked the profile on prose
+
 **Creation** — [D0022](decisions/D0022-the-preference-signal-is-named-defects-never-blind.md) The preference signal is named defects, never blind rankings
 
 **Creation** — [G0004](goals/G0004-structure-sounds-like-the-operator-and-prose-is.md) Structure sounds like the operator and prose is prose they would sign
