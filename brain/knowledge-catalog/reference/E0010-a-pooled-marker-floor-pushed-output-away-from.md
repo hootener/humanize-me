@@ -66,7 +66,7 @@ What was actually the case, checked the same day:
 |---|---|
 | the profile destroyed 6 of 6 hyperlinks | **The briefs contained no URLs at all.** The control *fabricated* six — `docs.github.com/...`, `github.com/apps/codecov`, `about.codecov.io/blog/...` — none of them supplied by anything. The profile arm correctly produced none. |
 | the profile lost the installation sentence | It is present: *"Installation and configuration both happen over on GitHub."* |
-| the profile dropped an *Update:* label | No such label is in the brief. The control invented the framing. |
+| the profile dropped an *Update:* label | The brief mandates *a short note with no heading above all the sections* and its content, but specifies no label. The note is present in both arms; the control added the word *Update:* in italics, which no source supplied. The framing was given; the label was invented. |
 
 So the profile arm was **faithful to its source** and the control
 **hallucinated**. Six plausible, correctly-shaped, entirely invented links in a
@@ -119,3 +119,17 @@ next run.
 - [D0018](../decisions/D0018-a-voice-profile-states-its-claims-checkably.md)'s
   amendment said markers may not gate anything. This says more: a pooled marker
   may not be **instructed** either.
+
+# A third writer repeated the invention, and called it preservation
+
+A later run on the same briefs, using the corrected skill, reported that it had
+**preserved** "the italic *Update:* label opening the post-mortem". The brief
+contains no such label. That writer invented it exactly as the control had, and
+then described the invention as fidelity.
+
+Worth recording because it is the failure mode the corrected skill section
+exists to catch, appearing in a writer that had just read the section. A
+plausible, conventional, well-formed addition does not feel like an invention
+from the inside — it feels like doing the job properly. "Keep what you were
+given" is not self-enforcing, because the writer's sense of what it *was* given
+has already absorbed what it added.
