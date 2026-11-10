@@ -2,6 +2,10 @@
 
 Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
+## 2026-11-10
+
+**Creation** — [E0007](reference/E0007-state-of-the-art-for-reproducing-a-specific.md) State of the art for reproducing a specific person's writing voice
+
 ## 2026-11-09
 
 **Creation** — [E0006](reference/E0006-the-operator-rejected-a-profile-that-passed-every.md) The operator rejected a profile that passed every marker
