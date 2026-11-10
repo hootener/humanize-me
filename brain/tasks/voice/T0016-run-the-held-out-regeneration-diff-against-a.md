@@ -3,7 +3,7 @@ id: T0016
 type: task
 title: "Run the held-out regeneration diff against a pristine test set"
 description: "Regenerate pieces the operator already wrote, from content-only briefs, and compare against the real thing — the only check in the design that could have caught the failure in E0006."
-status: In Progress
+status: Testing
 category: enhancement
 initiative: voice
 blocked_by: []
@@ -60,12 +60,12 @@ diagnostic and explicitly not as the verdict.
 
 # Acceptance criteria
 
-- [ ] Test pieces extracted mechanically and never read by the session
+- [x] Test pieces extracted mechanically and never read by the session
       conducting the comparison
-- [ ] Briefs carry no heading and no phrase from the originals
-- [ ] Each generated arm produced by an agent with no corpus exposure
-- [ ] The operator judges blind, with arm labels withheld until after
-- [ ] The result is recorded whichever way it falls, including "the profile made
+- [x] Briefs carry no heading and no phrase from the originals
+- [x] Each generated arm produced by an agent with no corpus exposure
+- [x] The operator judges blind, with arm labels withheld until after
+- [x] The result is recorded whichever way it falls, including "the profile made
       no difference"
 
 # Out of scope
@@ -154,3 +154,34 @@ discipline held, the operator's rankings were written down before anything was
 unsealed, and the two most useful findings — bullet length, one subject per
 heading — came from reasons he volunteered rather than from the rankings
 themselves. The free-text reason is carrying more information than the ordinal.
+
+## 2026-11-10 — nine trials complete; the result is a dissociation
+
+Three post-mortem trials added. **The pooled numbers are flat and the split is
+not.** The profile beat the no-guidance control **3/3 on headings and 0/6 on
+prose**, Fisher exact two-sided p = 0.012, with the control placing last in
+every headings trial and first or second in every prose trial. Full numbers in
+[E0009](../../knowledge-catalog/reference/E0009-the-profile-works-on-headings-and-not-on.md).
+
+Pooled across populations: profile above control 3/9 (p = 0.508), own writing
+identified 3/9 against a chance rate of exactly 3/9. Two effects of opposite
+sign cancelling. **The first summary this task produced was the wrong summary**,
+and it was wrong in the way
+[D0021](../../knowledge-catalog/decisions/D0021-a-profile-is-derived-per-text-population-not.md)
+predicts: a mean taken across text populations hides a population-specific
+effect. That decision has now been vindicated in the profile, in the comparison
+tooling, and in the statistics.
+
+[D0018](../../knowledge-catalog/decisions/D0018-a-voice-profile-states-its-claims-checkably.md)
+is amended on the strength of it: markers are diagnostics rather than a gate, a
+verification claim must name its population, and a profile verified only by its
+author's reaction to prose is weakly verified — he scored at chance and ranked
+his own published prose last in 4 of 6 prose trials.
+
+# What this task is still waiting on
+
+The acceptance criteria are met and the finding is recorded, including the part
+that favours nothing we built. What it cannot do is confirm the dissociation:
+that was a **post-hoc subgroup analysis** at n = 9, found by going looking after
+the pooled result came back flat. Confirming it needs trials designed around
+headings in advance, which is a new task rather than more of this one.

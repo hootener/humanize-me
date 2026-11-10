@@ -15,3 +15,4 @@ than gathered carries `resource:`. A plain measurement carries none.
 | [E0006](E0006-the-operator-rejected-a-profile-that-passed-every.md) | active | The operator rejected a profile that passed every marker |
 | [E0007](E0007-state-of-the-art-for-reproducing-a-specific.md) | active | State of the art for reproducing a specific person's writing voice |
 | [E0008](E0008-the-profile-did-not-beat-the-control-and.md) | active | The profile did not beat the control and the operator scored at chance |
+| [E0009](E0009-the-profile-works-on-headings-and-not-on.md) | active | The profile works on headings and not on prose |

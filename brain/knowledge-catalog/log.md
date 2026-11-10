@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-10
 
+**Creation** — [E0009](reference/E0009-the-profile-works-on-headings-and-not-on.md) The profile works on headings and not on prose
+
 **Creation** — [E0008](reference/E0008-the-profile-did-not-beat-the-control-and.md) The profile did not beat the control and the operator scored at chance
 
 **Creation** — [T0017](../tasks/voice/T0017-experiment-population-matched-exemplar-retrieval-versus-a-described.md) Experiment: population-matched exemplar retrieval versus a described profile

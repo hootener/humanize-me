@@ -78,3 +78,19 @@ The operator asked for [T0016](T0016-run-the-held-out-regeneration-diff-against-
 first and flagged this one as interesting for research purposes. Blocked on
 T0016 rather than merely unscheduled: without the control and profile arms there
 is nothing to compare an exemplar arm against.
+
+## 2026-11-10 — now has a sharp prediction to test
+
+[T0016](T0016-run-the-held-out-regeneration-diff-against-a.md) found the
+described profile's entire measurable effect sits in headings and is absent —
+possibly negative — in prose
+([E0009](../../knowledge-catalog/reference/E0009-the-profile-works-on-headings-and-not-on.md)).
+
+That turns this experiment from "try exemplars and see" into a falsifiable
+prediction. If a description carries what can be enumerated and exemplars carry
+what cannot, then verbatim passages should beat the described profile **on
+prose and not on headings** — the exact inverse of T0016's result. A run where
+exemplars win on headings too, or lose on both, falsifies that account of why
+the dissociation exists.
+
+Run it on the same nine trials, as a fourth arm, so the comparison is direct.
