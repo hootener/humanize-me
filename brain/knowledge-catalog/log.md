@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-10
 
+**Creation** — [E0008](reference/E0008-the-profile-did-not-beat-the-control-and.md) The profile did not beat the control and the operator scored at chance
+
 **Creation** — [T0017](../tasks/voice/T0017-experiment-population-matched-exemplar-retrieval-versus-a-described.md) Experiment: population-matched exemplar retrieval versus a described profile
 
 **Creation** — [T0016](../tasks/voice/T0016-run-the-held-out-regeneration-diff-against-a.md) Run the held-out regeneration diff against a pristine test set
