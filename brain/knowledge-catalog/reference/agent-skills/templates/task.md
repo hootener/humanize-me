@@ -8,7 +8,7 @@ category: enhancement
 initiative: <folder name>
 blocked_by: []
 spec: <optional relative link to ../../knowledge-catalog/specs/...>
-timestamp: "<YYYY-MM-DD>"
+timestamp: "2026-11-10"
 tags: []
 ---
 

@@ -201,7 +201,23 @@ QUESTION = {
 }
 
 # Where a branch is allowed to stop. Reaching one of these is the point.
-TERMINATES = {'goal', 'principle'}
+# A lineage terminates in Intent. A goal or a principle is the strongest form
+# of that; **a decision is also Intent**, and for some projects it is the only
+# form the intent ever takes.
+#
+# A consulting project put this plainly: intent arrives from outside, as prose,
+# at 20:51 on a Monday. Its brain holds 29 evidence nodes, 23 decisions and
+# zero plans — "structural, not lazy" — so every task reported UNTERMINATED and
+# the operator stopped running this. Their ask was not "let me write plans to
+# satisfy a linter"; it was to let a lineage terminate on a decision and say
+# which kind of termination it found. That is the right ask: `goal` and
+# `decision` are both Intent in D0002's own table.
+TERMINATES = {'goal', 'principle', 'decision'}
+
+# The distinction is kept in the report rather than in the rule, because the
+# two are not equally strong: a goal says what outcome the work is for, a
+# decision says what constraint it must respect.
+STRONGEST = {'goal', 'principle'}
 
 # **Where the walk stops: a type, not a distance.**
 #
@@ -497,13 +513,22 @@ def main():
     # Reported before anything else: a closure that never reaches Intent is a
     # finding about the record, not a quieter review.
     if not terminal:
-        print('  ⚠ UNTERMINATED — no branch reaches a goal or a principle.')
+        print('  ⚠ UNTERMINATED — no branch reaches a goal, a principle or a '
+              'decision.')
         print('    This work has no recorded intent to be checked against.')
         print('    Give the spec or plan a `serves:` before reviewing the code.')
         print()
     else:
         print('  terminates at: %s' % ', '.join(
             '%s %s' % (e.get('id') or '', e['title']) for e in terminal))
+        if not any(e['kind'] in STRONGEST for e in terminal):
+            print('    on a decision, not a goal — the recorded intent is a '
+                  'constraint this')
+            print('    work must respect rather than an outcome it was asked '
+                  'to reach. Normal')
+            print('    where intent arrives from outside; worth a goal if you '
+                  'ever want to ask')
+            print('    whether the work was worth doing.')
         print()
 
     by_cat = {}

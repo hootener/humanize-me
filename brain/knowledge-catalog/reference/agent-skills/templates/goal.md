@@ -3,7 +3,7 @@ id: G<NNNN>
 type: goal
 title: <the objective, as an outcome>
 description: <one sentence>
-timestamp: "<YYYY-MM-DD>"
+timestamp: "2026-11-10"
 tags: []
 status: active
 ---

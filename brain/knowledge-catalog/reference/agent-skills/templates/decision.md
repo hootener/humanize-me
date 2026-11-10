@@ -3,7 +3,7 @@ id: D<NNNN>
 type: decision
 title: <short imperative title — state the claim, not the topic>
 description: <one sentence>
-timestamp: "<YYYY-MM-DD>"
+timestamp: "2026-11-10"
 tags: []
 status: active
 serves: <relative link to the goal this pursues>

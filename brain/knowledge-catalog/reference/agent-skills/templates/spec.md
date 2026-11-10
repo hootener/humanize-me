@@ -6,7 +6,7 @@ description: <one sentence>
 initiative: <tasks folder name>
 status: active
 serves: <relative link to the goal this pursues>
-timestamp: "<YYYY-MM-DD>"
+timestamp: "2026-11-10"
 tags: []
 ---
 

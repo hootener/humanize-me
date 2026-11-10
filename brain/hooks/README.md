@@ -1,7 +1,7 @@
 # hooks
 
 Layer 1 of keeping the brain current
-([D0007](../example/knowledge-catalog/decisions/D0007-status-ownership.md)): the part
+([D0007](../knowledge-catalog/decisions/D0007-status-ownership.md)): the part
 that cannot be forgotten, because nobody has to remember it.
 
 | Hook | Runs | Does |

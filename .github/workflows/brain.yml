@@ -45,6 +45,13 @@ jobs:
       - name: doctor
         run: $BRAIN/bin/doctor
 
+      # A field the record carries that no tool reads is inert without ever
+      # looking lost: `consent_by` named the date an agreement turned on and
+      # sat unread for three rounds. Nothing dangles, so nothing else catches
+      # it.
+      - name: unread
+        run: $BRAIN/bin/unread
+
       # A fresh install into a throwaway host, plus a corpus deliberately not
       # written for this brain. Every defect this project has fixed was found
       # by adoption and none by its own checks; this keeps a sample of that

@@ -6,7 +6,7 @@ tags: [brain, config, install]
 status: active
 mode: embedded
 repos: [humanize-me]
-brain_revision: "f3ec7ca"
+brain_revision: "e29a615"
 tracker: "brain/tasks"
 docs: []
 ---
@@ -20,6 +20,16 @@ docs: []
 | `embedded` | the brain is a `brain/` directory inside a host repository — the default ([D0004](example/knowledge-catalog/decisions/D0004-placement-and-install.md)) | the brain's parent |
 | `sibling` | the brain is its own repository inside a workspace folder, beside the project repos it describes | the brain itself |
 | `template` | this is the unadopted template; `bin/adopt` has not run | the brain itself |
+
+`human_fields` lists frontmatter that people read and no tool does, on
+purpose. `bin/unread` reports unread fields so a value that drives a workflow
+cannot sit inert — but some fields earn their place without a reader. The test
+an adopter proposed, and it is a good one: **does it change how a conflicting
+record is read?** They kept `decided_by` because two of their decisions
+contradict each other on the facts and it is the only thing making the
+founder's call outrank the engineer's inference; they dropped `owner`, one
+name on six tasks, arbitrating nothing. Listing a field here is the answer to
+that test, not an escape from it.
 
 In **both** modes `.claude/skills` is linked into the brain's *parent*, because
 that is the directory Claude Code is run from and the only one where the

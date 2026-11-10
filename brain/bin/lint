@@ -72,7 +72,10 @@ RESERVED = {'index.md', 'log.md', 'howto.md', 'README.md', 'TODO.md', 'map.md',
 # path — the tools look up `config.md` by name — so giving it an id would mean
 # a filename the tools could not predict.
 RESERVED_KEYS = {'index.md': {'okf_version'},
-                 'config.md': {'mode', 'repos', 'tracker', 'docs', 'brain_revision', 'title',
+                 'config.md': {'mode', 'repos', 'tracker', 'docs', 'brain_revision',
+                               # Fields this install says people read and no
+                               # tool does, on purpose — see bin/unread.
+                               'human_fields', 'title',
                                'description', 'timestamp', 'tags', 'status',
                                'type', 'id'}}
 
@@ -383,7 +386,42 @@ def check_headings(rel, fm, body):
             warnings.append(f'{rel}: `{heading}` is empty — {hint}')
 
 
-PLACEHOLDER = re.compile(r'<[a-z][^<>\n]{3,}>')
+def scaffold_tokens():
+    """The placeholder tokens the shipped templates actually use.
+
+    Identity, not pattern — the lesson `.template-record` already taught at a
+    cost. `<[a-z][^<>]{3,}>` matches any angle-bracket token, and on a real
+    corpus that is mostly legitimate content: an email address written
+    `<someone@example.com>`, an HTML element named `<form>`, a quoted example
+    reading `'<student> (1 of 8)'`. Measured against a third adopter's brain
+    before shipping: five errors, five of them false, zero real scaffolds —
+    the ratio that gets a rule switched off along with everything it would
+    have caught.
+
+    So the check asks what the templates write, and flags only that.
+    """
+    folder = os.path.join(ROOT, 'knowledge-catalog', 'reference',
+                          'agent-skills', 'templates')
+    found = set()
+    if os.path.isdir(folder):
+        for name in os.listdir(folder):
+            if not name.endswith('.md'):
+                continue
+            try:
+                text = open(os.path.join(folder, name), encoding='utf-8').read()
+            except OSError:
+                continue
+            found |= set(re.findall(r'<[a-z][^<>\n]{2,}>', text))
+    # The floor, for a brain whose templates have been edited away: these are
+    # what `bin/new` substitutes, so a node still carrying one is unfilled.
+    found |= {'<YYYY-MM-DD>', '<one sentence>', '<title>', '<type>'}
+    return found
+
+
+SCAFFOLDS = scaffold_tokens()
+PLACEHOLDER = re.compile(
+    '|'.join(re.escape(t) for t in sorted(SCAFFOLDS, key=len, reverse=True))
+) if SCAFFOLDS else re.compile(r'(?!)')
 
 
 def check_placeholders(rel, fm, body):
@@ -397,9 +435,13 @@ def check_placeholders(rel, fm, body):
     """
     for field in ('title', 'description'):
         v = str(fm.get(field, ''))
-        if PLACEHOLDER.search(v):
-            errors.append(f'{rel}: `{field}` is still the scaffold text '
-                          f'(`{v[:46]}`) — fill it in or delete the node')
+        m = PLACEHOLDER.search(v)
+        if m:
+            # Name the token found. It used to print the whole field and claim
+            # it was "still the scaffold text", which misattributed a real
+            # sentence that merely contained an angle-bracket token.
+            errors.append(f'{rel}: `{field}` still carries the scaffold token '
+                          f'`{m.group(0)}` — fill it in or delete the node')
 
     # Angle brackets in backticks or a fence are documented command syntax —
     # `bin/new <type>`, `<project>/brain`, `--owner <name>`. The first version
@@ -432,6 +474,91 @@ def check_serves(rel, fm):
     if CATEGORY.get(fm.get('type')) == 'Approach' and not fm.get('serves'):
         warnings.append(f'{rel}: no `serves` — a {fm["type"]} names the goal it '
                         f'serves, or a lineage walk cannot terminate in Intent')
+
+
+# Typed frontmatter edges, and what each may point at. `constrains` is absent
+# because it holds path globs, not citations, and `blocked_by` because it is
+# scheduling — but both are *known*, which is what stops them being reported as
+# unrecognised.
+EDGE_TARGETS = {
+    # A decision is Intent too, and for a project whose intent arrives from
+    # outside as prose it is the only form it takes. Restricting `serves:` to
+    # a goal forced a consulting brain with 23 decisions and no plans to
+    # either invent plans or live with every task UNTERMINATED.
+    'serves': {'goal', 'decision', 'principle'},
+    'spec': {'spec'},
+    'reviewed': {'evidence'},
+    'superseded_by': None,   # any type: a node is replaced by its own kind
+    'amends': None,
+    'blocked_by': None,
+    # A pointer to raw evidence kept outside the graph — a transcript, a
+    # report. Type-unconstrained because the thing it names is not a node.
+    'resource': None,
+}
+# `constrains` is excluded from resolution entirely, not merely from type
+# checking: it holds path *globs* matched against arbitrary paths by
+# bin/constraints, resolved from the brain root rather than the node's own
+# directory. Treating them as citations reported three real decisions as
+# broken — the check's first false positives, inside the gate.
+NOT_PATHS = {'constrains'}
+KNOWN_EDGE_KEYS = set(EDGE_TARGETS) | NOT_PATHS
+
+
+def check_edges(rel, fm, every_file):
+    """Frontmatter edges resolve, and point at the right kind of node.
+
+    Nothing checked these. `check_node_refs` validates *body* links, and
+    frontmatter paths were resolved only to feed the direction rule — so a
+    plan carrying `intent: ./intent.md`, pointing at a file its own migration
+    had deleted, passed with zero errors, and a deliberately bogus `spec:`
+    edge drew no warning either.
+
+    That is the wrong way round. The README's own argument for typed edges is
+    that **"a typed edge is enumerable; a body link is a hope"** — and the
+    linter was checking the hope. An unresolvable body link is a warning
+    because it may be marking future work; an unresolvable typed edge is an
+    error, because a tool will traverse it.
+    """
+    for key, value in sorted(fm.items()):
+        if key in NOT_PATHS:
+            continue
+        values = [value] if isinstance(value, str) else (
+            list(value) if isinstance(value, list) else [])
+        paths = [v for v in values if isinstance(v, str)
+                 and v.strip().endswith('.md')
+                 and not v.startswith(('http', 'mailto:', '#'))]
+        if not paths:
+            continue
+        if key not in KNOWN_EDGE_KEYS:
+            warnings.append(
+                f'{rel}: `{key}:` names a node but no tool traverses it — '
+                f'either it is a typed edge the toolchain should know '
+                f'({", ".join(sorted(EDGE_TARGETS))}), or it belongs in the body')
+        for target in paths:
+            resolved = os.path.normpath(
+                os.path.join(os.path.dirname(rel), target.split('#')[0]))
+            # feedback/ and work/ are skipped by the walk but are real
+            # directories on disk, so a pointer into them resolves.
+            if (resolved not in every_file
+                    and not os.path.isfile(os.path.join(ROOT, resolved))):
+                errors.append(
+                    f'{rel}: `{key}: {target}` does not resolve. A typed edge is '
+                    f'traversed by tools, so unlike a body link it cannot stand '
+                    f'as a note about future work')
+                continue
+            want = EDGE_TARGETS.get(key)
+            if not want:
+                continue
+            try:
+                other, _, _ = parse_front(
+                    open(every_file[resolved], encoding='utf-8').read())
+            except (OSError, KeyError, ValueError):
+                continue
+            got = other.get('type')
+            if got and got not in want:
+                errors.append(
+                    f'{rel}: `{key}:` points at a `{got}`, and {key} names a '
+                    f'{" or ".join(sorted(want))}')
 
 
 def check_direction(nodes):
@@ -500,6 +627,7 @@ def main():
             check_id(rel, fm, name, seen_ids)
             check_headings(rel, fm, body)
             check_serves(rel, fm)
+            check_edges(rel, fm, files)
             check_placeholders(rel, fm, body)
 
             # Collect the backward-pointing edges for the direction rule. The

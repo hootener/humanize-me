@@ -47,9 +47,12 @@ allocate with `bin/new`; never pick a number by hand.
   only: amend it, or proceed against it with the id in the task's `# Log`.
 - **Supersede, don't delete.** A decision quietly edited to match what got
   built teaches the reader that the record is written afterwards.
-- **When you learn something the record doesn't know**, write it down then —
-  `bin/new evidence`, or an entry in
-  [the running record of what the brain has caught](example/knowledge-catalog/reference/E0001-brain-in-practice.md).
+- **When you learn something the record doesn't know**, write it down then.
+  `bin/note "<what happened>"` takes it with no type, no folder and no id —
+  use it by default. Deciding what kind of thing it is costs more than writing
+  it, so do that later, with `bin/which`, or never: an entry that stays a
+  journal line still did its job. Reach for `bin/new <type>` when you already
+  know the answer.
 
 ## Tools
 
@@ -63,11 +66,19 @@ allocate with `bin/new`; never pick a number by hand.
 | `bin/ancestry <id> [--claims]` | walk back to the intent that asked for it |
 | `bin/ancestry <id> --forward` | walk on to what that intent asked for |
 | `bin/reconcile [initiative]` | task status against the repository |
+| `bin/note "<what happened>"` | record it now; decide what it is later |
+| `bin/which` | what kind of node is this — the procedure, in two questions |
 | `bin/new <type> "<title>"` | allocate an id and scaffold the node |
 | `bin/stale` | countable claims that no longer match the files |
+| `bin/prove <cmd>` | does that tool's output match what it did to the files |
+| `bin/unread` | frontmatter the record carries that no tool reads |
 | `bin/index` | rebuild folder indexes (`bin/new` calls it) |
 | `bin/graph-build` | rebuild `graph.html` |
 | `bin/handoff <init> --for <who>` | a self-contained page for someone outside the brain |
+
+When an initiative holds more than one plan, mark the initiative's own with
+`initiative_plan: true` — `bin/handoff` otherwise has to guess which one a
+handoff is about, and it says so when it does. `--plan <path>` overrides.
 
 ## Skills, by where they sit on the picture
 

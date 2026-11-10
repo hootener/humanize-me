@@ -12,4 +12,4 @@ Tasks for the **voice** initiative. `brain/bin/status voice` shows what is claim
 | [T0016](T0016-run-the-held-out-regeneration-diff-against-a.md) | Testing | Run the held-out regeneration diff against a pristine test set |
 | [T0017](T0017-experiment-population-matched-exemplar-retrieval-versus-a-described.md) | Not Ready | Experiment: population-matched exemplar retrieval versus a described profile |
 | [T0018](T0018-diagnose-why-the-no-guidance-control-outranked-the.md) | Testing | Diagnose why the no-guidance control outranked the profile on prose |
-| [T0019](T0019-stop-voice-rewriting-from-deleting-content.md) | Not Ready | Stop voice rewriting from deleting content |
+| [T0019](T0019-stop-voice-rewriting-from-deleting-content.md) | Testing | Stop voice rewriting from deleting content |

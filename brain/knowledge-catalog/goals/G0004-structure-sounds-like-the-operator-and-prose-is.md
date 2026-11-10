@@ -6,7 +6,6 @@ description: "Fidelity is the target where the operator can detect their own voi
 timestamp: "2026-11-10"
 tags: [voice, registers, goal]
 status: active
-supersedes: G0003-an-agent-writes-human-facing-prose-in-the.md
 ---
 
 # Goal

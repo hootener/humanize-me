@@ -68,15 +68,29 @@ cited as covered.
 
 ## The rule that governs everything here
 
-**Date every imported node by its origin, never by the import.** Stamping
+**If the source already carries dates, trust them.** A brain migrating from
+another brain — or any source already in OKF — has an authored `timestamp:` on
+most of its files: 123 of 158, in the first migration of one. That date is
+better than anything you can reconstruct, and `git log --follow` would have
+been *worse* than what was already in the files. One line of work, and the
+instruction below is for the case where the source has no dates of its own.
+
+**Otherwise, date every imported node by its origin, never by the import.** Stamping
 today on a document written in July makes every decision citing it look like
 it cites the future, and the direction rule will say so — twenty-eight times,
 in the first real adoption. Take the date from the filename where it carries
 one, and from `git log --follow --format=%ad --date=short` otherwise, which is
 the reason to move files with `git mv` rather than copy them.
 
-**Mark running records `append_only: true`** — a project log, an open-questions
-list, a state snapshot. Their content runs ahead of their open date by design.
+**Mark running records `append_only: true`** — a project log, an
+open-questions list, a state snapshot. Their content runs ahead of their open
+date by design.
+
+**An initiative's `plan.md` is usually one of them.** It is opened on day one,
+links every phase as the phases arrive, and is appended to for weeks. In the
+first migration, **25 of 27 direction warnings came from three plan files**,
+every one spurious, and nothing told the migrator that a plan could be a
+running record. If a plan links nodes written after it, it is.
 
 **Everything imported lands as `status: draft` with a `resource:` pointing at
 where it came from.** You are reconstructing, and a reconstruction that reads
@@ -110,6 +124,25 @@ and every Approach node you write will fail `serves:`. If the answer is "a lot
 of things", take the two that matter most this quarter and write those.
 
 Write it: `bin/new goal "<the outcome>"`.
+
+## Node types this brain does not have
+
+A source brain may carry types that are not in the seven. Two that have come
+up, and what they become:
+
+- **`intent`** — a half-page written to be forwarded, usually beside a plan.
+  **It folds into the plan** as an `# Intent (forwardable)` section;
+  `bin/handoff` reuses that section verbatim as every handoff's opening, so
+  the two cannot drift. It is not a node, and nothing in this brain reads a
+  separate one. *This was the one answer a migrator could not find anywhere,
+  and the cost was a `consent_by:` that silently stopped being read.*
+- **`handoff`** — the exec-facing page. **It is a projection, not a node**:
+  `bin/handoff` renders it from the plan plus an authored half under
+  `plans/<initiative>/handoff/`. What gets recorded is the *event* of handing
+  it over, as an `evidence` node.
+
+Anything else: map it to one of the seven and say which, or leave it as
+`evidence` with a `resource:` and flag it in your report.
 
 ## Step 2 — import what already exists
 
@@ -229,6 +262,38 @@ carries today's date, so the direction rule cannot fire among these nodes —
 a goal may link a decision written minutes later. Do not order your writes
 around it or back-date anything to force a sequence. The rule is about
 *imported* nodes, which carry origin dates.
+
+## Fields this brain does not model
+
+A source brain will carry frontmatter keys that mean something to its own
+process and nothing here — `flag:`, `consent_by:`, `production_date:`. Keeping
+them is harmless and they are not read by anything, which is the trap: a field
+that mattered becomes invisible without ever looking lost.
+
+Say so explicitly in your report, naming each one. **Leave the value in
+frontmatter.** This used to say the working copy belonged in the authored half
+of the handoff, which meant hand-copying a date out of frontmatter into prose
+generated from the same plan — a second copy of a value that already exists,
+in a file regenerated from the first. That is precisely the drift the
+authored-half split was built to prevent, and the advice was found to be
+self-defeating by the brain it was written for.
+
+A date the work turns on is read by the generator instead. Any plan
+frontmatter key ending `_by`, `_on`, `_at`, `_date` or `deadline`, with an
+ISO date for a value, renders as **Dates that matter** on an executive,
+business, marketing or product handoff. So `consent_by: "2026-11-20"` on the
+plan reaches the page with no second copy and nothing to keep in sync; the
+authored half can then refer to "the consent date" the way prose naturally
+does. Fields that are not dates, and not read by anything, are still worth
+naming in your report — but do not duplicate them to make them visible.
+
+Write it under its own heading and `bin/handoff` carries it through verbatim,
+after the sections that discipline generates, in the order you wrote them. It
+used to render a heading only if the text matched one of ten known section
+titles *and* that discipline carried it — so an executive handoff dropped five
+of eight authored sections silently, including the one holding the date the
+agreement turned on. Unrecognised headings now survive, and the run names
+them.
 
 ## Step 5 — report what you did and what is still guesswork
 

@@ -36,7 +36,12 @@ brain/bin/constraints <the paths this change will touch>
 `relevant` searches by term and will miss a decision that uses different words
 for the same thing. `constraints` does not search: it lists the decisions that
 have **declared** they govern these paths, with the one sentence each says must
-stay true. Run both.
+stay true. Run both — neither covers the other.
+
+`relevant` ends by naming the decisions that matched **neither** your words nor
+any path. Those are the ones no tool here can surface against a change, so read
+that list yourself; it is short when the record declares what it governs and
+long when it does not, which is itself the finding.
 
 Then run it again on the *domain* words if the first pass was thin — the record
 uses the project's vocabulary, so "make it faster" finds nothing while "cache",

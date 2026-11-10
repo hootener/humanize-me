@@ -95,6 +95,22 @@ brain/bin/update --from https://github.com/<you>/brain.git
 brain/bin/update --list        # exactly what counts as generic
 ```
 
+**If your brain has no `bin/update`**, which is the likely case precisely
+because it is old enough to need updating, bootstrap from a template checkout
+and point it at your install:
+
+```bash
+git clone https://github.com/<you>/brain.git /tmp/brain-template
+/tmp/brain-template/bin/update --target /path/to/your/project/brain
+```
+
+A third adopter was handed the first recipe for an install that had none of the
+tools it names — no `update`, `selftest`, `prove`, `unread`, `handoff` or
+`index`. **The install old enough to need updating is the one least likely to
+have the tool**, and only the tool's own docstring said so. Nothing else in the
+onboarding path did, so the instruction was unrunnable for exactly the
+population it was written for.
+
 It was a shell recipe here, and a recipe nobody runs rots: it pulled a clone
 in `/tmp`, looped over directories only — so `INIT.md`, a top-level file,
 never arrived — and the commit that introduced the hole edited this README in
@@ -314,6 +330,34 @@ runs both and asks you about whatever it can't judge on its own.
 Strongly recommended, and **opt-in** — `.github/` is your team's directory, so
 `bin/adopt` describes the workflow and installs it only on `--with-ci`.
 
+### Before you trust a tool here, prove it
+
+```bash
+brain/bin/prove brain/bin/update --from https://github.com/hootener/brain.git
+```
+
+`bin/prove` hashes every file, runs the command's `--dry-run`, and asserts
+nothing moved; runs it for real and prints the change set beside the output for
+you to read one against the other; then runs it again and asserts the tree has
+settled.
+
+It exists because of what four cold adoptions actually found. Almost every
+defect was one thing: **the tool's output disagreed with the filesystem.** A
+`--dry-run` that wrote 22 files while printing "nothing written". A rewrite that
+turned 55 of an adopter's own citations into dead links and reported success. An
+install that took a change log from 12,339 bytes to 97 and said nothing. A
+count of updated paths that could never reach zero.
+
+The recipe is not the author's — it was proposed by the third project to adopt
+this brain, which also measured that it would have caught seven of the twelve
+defects found so far, **including all three the author had reported as
+verified and which were not.**
+
+It proves a tool is honest about what it did. It cannot prove that what it did
+was right: no assertion in it knows which plan a handoff should name or whether
+a page reads well. That needs a reader who is not the author — see
+[the decision that a change reading someone's corpus needs a corpus that is not yours](knowledge-catalog/decisions/D0011-a-change-that-reads-the-adopter-s-corpus.md).
+
 `bin/lint` and `bin/stale` are what keep the record honest between reviews, and
 CI is the only place they run without somebody remembering to. The workflow
 (`.github/workflows/brain.yml`) locates the brain itself, so one file works
@@ -376,6 +420,8 @@ bin/constraints <paths>        # which decisions govern these files
 bin/ancestry <id> [--claims]   # walk back to the intent that asked for it
 bin/ancestry <id> --forward    # walk on to what that intent asked for
 bin/reconcile [initiative]     # task status against the repository
+bin/note "<what happened>"     # record it now, decide what it is later
+bin/which                      # what kind of node is this (two questions)
 bin/new <type> "<title>"       # allocate an id and scaffold the node
 bin/renumber <old> <new>       # the one sanctioned reason to change an id
 bin/relink                     # backticked citations of nodes become real links
@@ -384,6 +430,8 @@ bin/stale                      # countable claims that no longer match the files
 bin/index                      # rebuild every folder index from the nodes present
 bin/utterances                 # what the operator actually said, from Claude Code's transcripts
 bin/selftest                   # a fresh install, and a corpus not written for this brain
+bin/prove <command...>         # does a tool's output match what it did to the files
+bin/unread                     # frontmatter the record carries that no tool reads
 bin/graph-build                # rebuild graph.html
 bin/diagram                    # rebuild the picture at the top of this file
 ```

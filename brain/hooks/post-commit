@@ -34,8 +34,11 @@ out=$("$BRAIN/bin/reconcile" 2>/dev/null) || exit 0
 # actually exist. Anchoring the range on one header printed an empty banner
 # whenever the sole finding was orphan commits — a hook that cries wolf with no
 # wolf attached is one people learn to scroll past.
+# One range, not three. `sed -n '/A/,$p;/B/,$p;/C/,$p'` prints to end-of-file
+# once per matching header, so the last section appeared three times and the
+# middle one twice — visible in this hook's own output on every commit.
 findings=$(printf '%s\n' "$out" \
-  | sed -n '/Wrong, and the evidence/,$p;/Cannot tell/,$p;/name no task/,$p' \
+  | awk '/Wrong, and the evidence|Cannot tell|name no task/{f=1} f' \
   | head -20)
 
 if [ -n "$findings" ]; then

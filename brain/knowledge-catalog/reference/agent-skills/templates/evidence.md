@@ -3,7 +3,7 @@ id: E<NNNN>
 type: evidence
 title: <what was observed, given, or learned>
 description: <one sentence>
-timestamp: "<YYYY-MM-DD>"
+timestamp: "2026-11-10"
 tags: []
 status: active
 # Present when this corrects something upstream — a retro.
