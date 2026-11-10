@@ -2,7 +2,7 @@
 id: E0010
 type: evidence
 title: "A pooled marker floor pushed output away from the operator's real register"
-description: "Why the no-guidance control beat the profile 0/6 on prose: a contraction floor averaged across registers that differ tenfold forced generated announcements 2-9x above the operator's true rate, and the profile arm destroyed every hyperlink in all three documents."
+description: "Why the no-guidance control beat the profile 0/6 on prose: a contraction floor averaged across registers that differ tenfold forced generated announcements 2-9x above the operator's true rate. A second finding claimed here was wrong and is retracted below."
 timestamp: "2026-11-10"
 tags: [voice, markers, genre, findings, regression]
 status: active
@@ -53,26 +53,46 @@ merely fail to help — it actively moves generated text away from the target it
 was derived from. A mean over a tenfold spread describes none of the registers
 it averages.
 
-# Finding 2 — the profile arm destroyed every hyperlink
+# Finding 2 — RETRACTED, and inverted
 
-| | control | profile |
-|---|---|---|
-| words | 2,751 | 2,813 |
-| **hyperlinks** | **6** | **0** |
-| numeric tokens | 29 | 29 |
+**This section originally claimed the profile arm destroyed every hyperlink in
+all three documents — six of six — and additionally dropped an italic *Update:*
+label and a sentence of installation instructions. All three claims were wrong,
+and the truth runs the other way.**
 
-Six of six links gone, across three documents. Also lost: an italic *Update:*
-label opening the post-mortem, and a sentence telling readers where
-installation and configuration happen.
+What was actually the case, checked the same day:
 
-Numbers survived and links did not, which points at the mechanism: the profile
-arm **rewrites sentences** to meet voice targets, and markup does not survive a
-rewrite while a figure embedded in a clause does. Nothing in
-`voice-professional/SKILL.md` or in the profile instructs the writer to preserve
-content through the rewrite, because neither was written with rewriting in mind.
+| claimed | measured |
+|---|---|
+| the profile destroyed 6 of 6 hyperlinks | **The briefs contained no URLs at all.** The control *fabricated* six — `docs.github.com/...`, `github.com/apps/codecov`, `about.codecov.io/blog/...` — none of them supplied by anything. The profile arm correctly produced none. |
+| the profile lost the installation sentence | It is present: *"Installation and configuration both happen over on GitHub."* |
+| the profile dropped an *Update:* label | No such label is in the brief. The control invented the framing. |
 
-**Voice transformation is a lossy operation and nothing in the shipped artifact
-guards against the loss.**
+So the profile arm was **faithful to its source** and the control
+**hallucinated**. Six plausible, correctly-shaped, entirely invented links in a
+technical post is a serious defect, and it belonged to the arm this evidence
+node was praising.
+
+**How the error was made.** The link count came from counting `](http` in each
+arm and treating the difference as deletion, without once checking whether the
+briefs contained any URLs to delete. The two supporting claims came from reading
+a `difflib.SequenceMatcher` sentence alignment as semantic correspondence — the
+matcher paired non-corresponding sentences across the two documents, and those
+pairings were read as "A has this, B dropped it".
+
+This is the **second tool-manufactured finding in one day**, after the heading
+count in [T0016](../../tasks/voice/T0016-run-the-held-out-regeneration-diff-against-a.md)
+that turned out to be a parser classifying YAML as headings. Both were
+confident, specific, plausible and false. The pattern is now a recurring failure
+mode of this project's method: a measurement tool is written quickly, is never
+checked against a case whose answer is already known, and the first thing it
+produces is believed.
+
+**What survives.** Finding 1 — the contraction floor — stands and was arrived at
+differently: by measuring the operator's own corpus per piece, where the answer
+was checkable against eight documents whose rates could be inspected
+individually. The difference between the two findings is not care taken; it is
+that one was computed against a known baseline and the other against nothing.
 
 # A flaw in the comparison, recorded because it cuts against the result
 
@@ -88,9 +108,11 @@ next run.
 - A marker expressed as a floor or a minimum is the dangerous shape, because it
   can only push in one direction. Ranges derived per register are the minimum
   fix; whether markers belong in the prompt at all is now open.
-- The craft skill needs a content-preservation rule, or voice work will keep
-  silently deleting links, labels and whole sentences. This is a defect in what
-  ships today.
+- The craft skill carries a rule covering **both** directions — invent nothing
+  you were not given, and keep what you were. Only the first half is measured;
+  the second is craft judgement and is stated as such. An earlier version of
+  that section cited the retracted deletion finding as a measurement and had to
+  be corrected in the shipped artifact.
 - It explains the 0/6 without appeal to taste: for this genre the profile made
   the text *less* like the operator, by a measurable amount, on the one marker
   that differed most between the arms.

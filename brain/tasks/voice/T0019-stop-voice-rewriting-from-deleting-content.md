@@ -76,3 +76,31 @@ inventing one would repeat the original error in a new direction.
 Leaving a known-harmful instruction in place while collecting defect reports
 would have polluted the collection, which is why it was done now rather than
 scheduled.
+
+## 2026-11-10 — the premise was wrong; the fix was rewritten, not reverted
+
+The measurement this task was built on **did not happen**. The briefs contained
+no URLs, so the profile arm destroyed nothing; the control *fabricated* six
+plausible links — `docs.github.com/...`, `github.com/apps/codecov`,
+`about.codecov.io/blog/...` — that no source supplied. The installation sentence
+the profile was said to have lost is present in its output. The *Update:* label
+was never in the brief; the control invented it. All three claims are retracted
+in [E0010](../../knowledge-catalog/reference/E0010-a-pooled-marker-floor-pushed-output-away-from.md).
+
+**The shipped skill carried a false measurement for about an hour.** Its
+*Keep what you were given* section opened with "This is measured, not
+hypothetical" and then cited a deletion that never occurred. That is the worst
+kind of error this project can make, because the whole method rests on
+[D0001](../../example/knowledge-catalog/decisions/D0001-claims-must-be-checkable.md)
+and a confident false claim costs a reader more than silence would.
+
+Corrected rather than reverted, because the inverted finding is real and
+sharper. The section is now **"Keep what you were given, and invent nothing"**,
+and it leads with the half that *is* measured: six fabricated, correctly-shaped,
+entirely invented hyperlinks in three technical posts. Plausible links are
+trivial to generate and among the worst things to be wrong about, because a
+reader clicks them. The preservation half remains as craft judgement and is
+labelled as judgement, not as measurement.
+
+The pre-send check now asks whether everything is still there **and nothing
+more**.

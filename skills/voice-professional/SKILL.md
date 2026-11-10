@@ -150,44 +150,45 @@ to be wrong, or it carries no information.
   ("have we considered whether...?") makes the reader do the work of finding
   your actual objection.
 
-## Keep what you were given
+## Keep what you were given, and invent nothing
 
-**Voice work is rewriting, and rewriting loses things.** This is measured, not
-hypothetical: a rewrite pass following an earlier version of this skill
-destroyed **every hyperlink in three documents — six of six** — dropped an
-italic *Update:* label opening a post-mortem, and lost a sentence telling
-readers where to install something. Every number survived. Markup and framing
-died.
+Two failures sit either side of a rewrite, and only one of them is loud.
 
-That is the shape of the loss. A figure sits inside a clause and gets carried
-along when the clause is reworded. A link, a label, a standalone instruction is
-a separate object, and a rewrite drops it without noticing.
+**Do not invent what you were not given.** This is measured. Asked to write
+three technical posts from briefs containing no URLs, a writer produced **six
+fabricated hyperlinks** — `docs.github.com/...`, `github.com/apps/...`,
+`about.codecov.io/blog/...` — every one of them correctly shaped, plausible, and
+not supplied by anything. Plausible-looking links are the easiest thing in the
+world to generate and among the worst things to be wrong about, because a reader
+clicks them.
 
-So before a rewrite is finished, check that the output still carries everything
-the input had:
+So: no URL you were not given. No version number, date, metric, name or quoted
+error you were not given. If the source says a link belongs somewhere and does
+not say where it points, say so in words and leave the link out. *"Installation
+happens on GitHub"* is correct; `[on GitHub](https://github.com/apps/...)` is a
+guess wearing a link's clothes.
 
-- **Every link, with its target.** A link turned into plain text is a deletion.
-- **Every number, date, version and identifier.**
-- **Every proper noun and product term**, spelled as the source spelled it.
-- **Every label that carries meaning** — *Update:*, *Note:*, *Deprecated:*,
-  *Breaking:*. These look like decoration and are not.
-- **Every instruction the reader is meant to act on**, including where to go
-  and what to click.
-- **Every caveat and limitation.** The hedge you were given is content; cutting
-  it is not a style decision.
+**And keep what you were given.** Rewriting moves whole sentences, and the
+things most easily lost are the ones that sit outside a sentence rather than
+inside one — a link, a label like *Update:* or *Deprecated:*, a standalone
+instruction, a caveat in its own clause. Numbers tend to survive because they
+ride along inside a clause being reworded. Separate objects do not.
+
+Before finishing, check the output still carries every link, number, identifier,
+product term, meaningful label, caveat and reader instruction that the input had
+— no more and no fewer.
 
 **Where voice and content conflict, content wins.** A sentence that sounds
 exactly like the writer and omits where to click is worse than a flat sentence
-that tells the reader where to click. If a phrasing you prefer cannot carry a
-link or a caveat, keep the link and accept the flatter sentence.
+that tells the reader where to click.
 
 ## Before you send it
 
 Five questions, in order. The first three are the craft; nothing about my voice
 excuses them.
 
-1. **Is everything still here?** Every link, number, label, caveat and
-   instruction that was in what I started from.
+1. **Is everything still here, and nothing more?** Every link, number, label,
+   caveat and instruction I was given — and no URL, figure or name I was not.
 2. **Does every judgment have a holder?** Mine, or someone I named.
 3. **Is every confidence something I could be wrong about?**
 4. **Did I weigh it, or did I only list it?** If the reader still has to decide
