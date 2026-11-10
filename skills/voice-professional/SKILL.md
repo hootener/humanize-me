@@ -150,15 +150,48 @@ to be wrong, or it carries no information.
   ("have we considered whether...?") makes the reader do the work of finding
   your actual objection.
 
+## Keep what you were given
+
+**Voice work is rewriting, and rewriting loses things.** This is measured, not
+hypothetical: a rewrite pass following an earlier version of this skill
+destroyed **every hyperlink in three documents — six of six** — dropped an
+italic *Update:* label opening a post-mortem, and lost a sentence telling
+readers where to install something. Every number survived. Markup and framing
+died.
+
+That is the shape of the loss. A figure sits inside a clause and gets carried
+along when the clause is reworded. A link, a label, a standalone instruction is
+a separate object, and a rewrite drops it without noticing.
+
+So before a rewrite is finished, check that the output still carries everything
+the input had:
+
+- **Every link, with its target.** A link turned into plain text is a deletion.
+- **Every number, date, version and identifier.**
+- **Every proper noun and product term**, spelled as the source spelled it.
+- **Every label that carries meaning** — *Update:*, *Note:*, *Deprecated:*,
+  *Breaking:*. These look like decoration and are not.
+- **Every instruction the reader is meant to act on**, including where to go
+  and what to click.
+- **Every caveat and limitation.** The hedge you were given is content; cutting
+  it is not a style decision.
+
+**Where voice and content conflict, content wins.** A sentence that sounds
+exactly like the writer and omits where to click is worse than a flat sentence
+that tells the reader where to click. If a phrasing you prefer cannot carry a
+link or a caveat, keep the link and accept the flatter sentence.
+
 ## Before you send it
 
-Four questions, in order. The first two are the craft; nothing about my voice
+Five questions, in order. The first three are the craft; nothing about my voice
 excuses them.
 
-1. **Does every judgment have a holder?** Mine, or someone I named.
-2. **Is every confidence something I could be wrong about?**
-3. **Did I weigh it, or did I only list it?** If the reader still has to decide
+1. **Is everything still here?** Every link, number, label, caveat and
+   instruction that was in what I started from.
+2. **Does every judgment have a holder?** Mine, or someone I named.
+3. **Is every confidence something I could be wrong about?**
+4. **Did I weigh it, or did I only list it?** If the reader still has to decide
    which consideration matters, I have not done the job of this register.
-4. **Would the first sentence be worth reading on its own?**
+5. **Would the first sentence be worth reading on its own?**
 
 Then read it once more and cut the framing sentences. There are usually two.

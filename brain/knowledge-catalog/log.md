@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-10
 
+**Creation** — [T0019](../tasks/voice/T0019-stop-voice-rewriting-from-deleting-content.md) Stop voice rewriting from deleting content
+
 **Creation** — [E0010](reference/E0010-a-pooled-marker-floor-pushed-output-away-from.md) A pooled marker floor pushed output away from the operator's real register
 
 **Creation** — [T0018](../tasks/voice/T0018-diagnose-why-the-no-guidance-control-outranked-the.md) Diagnose why the no-guidance control outranked the profile on prose
