@@ -164,3 +164,5 @@ rather than letting its confidence match the others.
 Report what you gathered, per register and per mode, with word counts; what you
 rejected and why; what you held back; and what the corpus still lacks. The gaps
 belong in the profile's own `gaps:` field, where the next reader will see them.
+
+Then hand off to `voice-draft`, which turns the report into the file.

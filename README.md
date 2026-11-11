@@ -7,8 +7,8 @@ sounds less like a robot wrote it.
 There are two ways in:
 
 1. Install the plugin and your agent picks up the behavior immediately.
-2. Clone the repository and build a profile of your own voice out of your own
-   writing.
+2. Point it at your own writing and build a profile, so those skills sound
+   like you and not like a generic competent writer.
 
 ## Why This Project Exists
 
@@ -41,16 +41,22 @@ craft, so the output will already read differently from stock agent prose, but
 it will not sound like you in particular. If you want these voices to sound like
 you, build a profile out of your own writing.
 
-## Picking a Voice
+## Using the Skills
 
-The skills are organized by voice.
+Six skills install. Three of them are voices to write in. Three of them build
+a profile so those three sound like you.
 
-- **Casual** -- just casual speech, the way you talk to a friend. Your say-so is
-  enough.
-- **Professional** -- where you owe someone your reasoning. This is what you use
-  for work.
-- **Precise** -- exact, objective, fact-based communication. You owe actual
-  evidence, and you are specific about what it shows and what it does not.
+Your agent reads the descriptions and picks a voice on its own when it is
+writing something a person will read. You can also just name one: *use
+voice-professional for this PR description*.
+
+### The three voices
+
+| skill | what you write with it | what a claim rests on |
+|---|---|---|
+| `voice-casual` | a chat message, a quick reply, a note to someone you know well | your say-so, and no reasoning is owed |
+| `voice-professional` | a decision memo, a status update, a PR description, a code review comment, a reply to a colleague | your judgment, owned and open to being wrong |
+| `voice-precise` | an incident post-mortem, a measurement write-up, an analysis whose numbers someone will act on | evidence outside you, and the prose is exact about what it does and does not show |
 
 These voices are three different levels of proving it to a reader. They dictate
 how you show your work based on the context you are communicating in: a casual
@@ -58,16 +64,28 @@ chat with friends, the kind of communication you would do at work, or the very
 precise communication you need for things like incident post-mortems or academic
 writing.
 
+### The three profile skills
+
+| skill | what it does |
+|---|---|
+| `voice-gather` | collects your writing, proves you actually wrote it, sorts it by voice, and holds samples back so there is something clean left to test against |
+| `voice-draft` | measures your writing and turns it into the profile file, recording what the corpus cannot support |
+| `voice-harvest` | writes passages in your voice from your own content, asks you what is wrong with each one, and turns what you name into rules |
+
+Run them in that order. The harvest is the part that does the work, and it is
+worth running more than once.
+
 ## (optional) Building a Profile from Your Own Writing
 
-Clone the repository and you get a guided process: it gathers your writing,
-drafts a profile out of it, then shows you generated text and asks what is wrong
-with it until the profile is right.
+The three skills above are a guided process: it gathers your writing, drafts a
+profile out of it, then shows you generated text and asks what is wrong with it
+until the profile is right. Expect it to take a while. Gathering is the slow
+part.
 
-Copy this prompt into Claude Code from the cloned repository:
+Copy this prompt into Claude Code:
 
 ```
-Read plugin/skills/voice-gather/SKILL.md and walk me through building a voice profile from my own writing. Start by asking me where I write.
+Walk me through building a voice profile from my own writing with voice-gather. Start by asking me where I write.
 ```
 
 You end up with profiles at `~/.claude/voice/profile/<voice>.md`, and the skills
@@ -111,8 +129,8 @@ REFERENCES.md lists the published research that informs this project.
 
 ## Status
 
-The project is MIT licensed and a work in progress. All three voices exist, and
-the casual and professional ones have been through review against real writing.
-The precise one has not, so I'd trust it least of the three.
+The project is MIT licensed and a work in progress. All three voices exist and
+have been through review against real writing. The precise one has had one round
+where the other two have had more, so I'd trust it least of the three.
 
 Try it on something a person is actually going to read.

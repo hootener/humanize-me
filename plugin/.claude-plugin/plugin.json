@@ -1,7 +1,7 @@
 {
   "name": "humanize-me",
   "version": "0.1.0",
-  "description": "Voice skills that stop a coding agent sounding like one when it writes prose a person will read. Three voices \u2014 casual, professional and precise \u2014 three different levels of proving it, or showing your work.",
+  "description": "Voice skills that stop a coding agent sounding like one when it writes prose a person will read. Three voices — casual, professional and precise — three different levels of proving it, or showing your work.",
   "author": {
     "name": "Eli Hooten"
   },
@@ -18,6 +18,7 @@
     "./skills/voice-professional",
     "./skills/voice-precise",
     "./skills/voice-gather",
+    "./skills/voice-draft",
     "./skills/voice-harvest"
   ]
 }
