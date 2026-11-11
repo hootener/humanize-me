@@ -1,89 +1,118 @@
 # humanize-me
 
-Voice skills you drop into a project so a coding agent writing prose **for a
-human reader** stops sounding like a coding agent.
+A set of skills for coding agents, shipped as a plugin for Claude Code. It
+changes what your agent writes when a person is going to read it, so the prose
+sounds less like a robot wrote it.
 
-Text written to be consumed by another agent is out of scope and does not need
-to sound like anyone.
+There are two ways in:
 
-## The idea
+1. Install the plugin and your agent picks up the behavior immediately.
+2. Clone the repository and build a profile of your own voice out of your own
+   writing.
 
-An agent's prose fails in a particular way, and it is not a failure of
-formality. It asserts everything at the same temperature — hedging claims it
-should state flatly, stating claims it should hedge — because it has no model
-of what a given claim is resting on. A reader notices the uniformity before
-they notice any individual word.
+## Why This Project Exists
 
-So the registers here are organized by **what a claim has to rest on**, not by
-how formal the writing looks:
+The intent here is not perfect prose that sounds exactly like you and can be
+pasted to another person unread. You own your voice, you own the way you sound
+to a reader, and you own the responsibility that comes with saying something in
+your own name. That ownership does not transfer to a tool. What these skills do
+is hand you a draft that carries a much lower editing burden than standard LLM
+output and is more straightforward for a reader to get through.
 
-| Register | A claim rests on | Status |
-|---|---|---|
-| `voice-casual` | the writer's say-so | not yet written |
-| `voice-professional` | the writer's judgment, stated as judgment and owned | available |
-| `voice-precise` | evidence outside the writer, stated exactly | not yet written |
+I'm tired of reading PR comments, code reviews, emails and Slack messages that
+were obviously pasted straight out of an LLM, with no editing and no thought for
+the person who has to read them. My hope is that a project like this makes some
+of the text on the internet slightly less exhausting to read. You should not be
+blindly pasting LLM output, handing it to someone and calling it your own prose.
+If you're going to do it anyway, at least use something that makes the output
+read better.
 
-A register is picked by asking what the claims require, never by asking what
-application the text is going into. A Slack message arguing for a schema change
-is casual in medium and professional in warrant.
+## Installing the Plugin
 
-## Install
-
-The repository is its own marketplace, so no third party is involved. Once it
-is pushed to a host, that is:
+In Claude Code:
 
 ```
-/plugin marketplace add <owner>/humanize-me
+/plugin marketplace add hootener/humanize-me
 /plugin install humanize-me
 ```
 
-From a local clone, point the first command at the checkout directory instead.
+The three voices (casual, professional and precise) ship with general writing
+craft, so the output will already read differently from stock agent prose, but
+it will not sound like you in particular. If you want these voices to sound like
+you, build a profile out of your own writing.
 
-That is the only install path. Nothing is copied into your project and nothing
-is symlinked into `.claude/skills`.
+## Picking a Voice
 
-## Sounding like you, rather than like nobody
+The skills are organized by voice.
 
-The skills above ship generic. They hold the craft — what agent prose does
-wrong, and what each register's claims owe the reader — and they know nothing
-about any particular person.
+- **Casual** -- just casual speech, the way you talk to a friend. Your say-so is
+  enough.
+- **Professional** -- where you owe someone your reasoning. This is what you use
+  for work.
+- **Precise** -- exact, objective, fact-based communication. You owe actual
+  evidence, and you are specific about what it shows and what it does not.
 
-To also sound like *you*, a **voice profile** describes how you write. The
-skills read it when they write. It is optional: with no profile they still do
-the generic job, so installing costs one step and never requires gathering a
-corpus first.
+These voices are three different levels of proving it to a reader. They dictate
+how you show your work based on the context you are communicating in: a casual
+chat with friends, the kind of communication you would do at work, or the very
+precise communication you need for things like incident post-mortems or academic
+writing.
 
-A profile is resolved per register, project first:
+## (optional) Building a Profile from Your Own Writing
+
+Clone the repository and you get a guided process: it gathers your writing,
+drafts a profile out of it, then shows you generated text and asks what is wrong
+with it until the profile is right.
+
+Copy this prompt into Claude Code from the cloned repository:
 
 ```
-./voice/profile/<register>.md        committed: a team's house voice
-~/.claude/voice/profile/<register>.md   yours, in force everywhere
-neither                              generic craft only
+Read skills/voice-gather/SKILL.md and walk me through building a voice profile from my own writing. Start by asking me where I write.
 ```
 
-Per register rather than per profile, so a team can share a `professional.md`
-through the repository while everyone's `casual.md` stays their own.
+You end up with profiles at `~/.claude/voice/profile/<voice>.md`, and the skills
+read them automatically. A team can commit a shared one at
+`./voice/profile/<voice>.md` in a repository.
 
-**The generator that builds a profile from your own writing is not built yet.**
-When it is, it will read a corpus you have sorted by register, and anything it
-reaches through an integration — your sent mail, say — it will read and distil
-without ever writing a copy to disk.
+A profile is optional, and without one the skills still do the generic job.
 
-## Why the project is shaped this way
+Nothing personal ships with this repository. No profile is included and none is
+loaded by default.
 
-The reasoning lives in `brain/`, as linked markdown rather than as folklore.
-Start at `brain/knowledge-catalog/goals/` for what this is for, and
-`brain/knowledge-catalog/decisions/` for why it is built this way — D0013
-through D0020 cover the architecture above.
+## Why Agent Prose Is Worth Fixing
 
-## License
+Agents are good at the things people check. The output is factually correct,
+grounded in what you gave the agent, and grammatically clean. None of those
+qualities makes the text cheap to read, and working through a wall of agent
+output is cognitively expensive.
 
-MIT — see [LICENSE](LICENSE). That covers this repository's own work: the
-register skills, the plugin manifests, this README and the project record under
-`brain/knowledge-catalog/`, `brain/plans/` and `brain/tasks/`.
+When an agent writes, it already knows the whole story, and it writes as though
+you know the story too. Nearly every other defect follows from that one habit.
 
-It does not cover the generic half of `brain/` — `brain/bin/`,
-`brain/skills/`, the templates and the scaffolding — which is forked from an
-upstream template at the revision recorded in `brain/config.md`. That
-upstream states no license, so its terms are its author's to give and are not
-restated here.
+Sentence shapes repeat, sentences come out short and clipped, and nouns and
+articles the reader needs go missing. Participles dangle off clauses that give
+them nothing to modify. Sentences trail off into prepositional phrases that make
+you reread them. Those defects make a narrative hard to follow casually, and
+reading agent output asks more of you than an email, a Slack message or a blog
+post from a peer.
+
+Those defects are not the whole problem, because writing also has grounds, the
+facts behind what you say and how firmly you say them, and tone, the way you
+speak. An agent has a hard time knowing when a claim should be stated plainly
+and when it should be qualified. You come away unable to tell which parts of the
+text the writer would stand behind.
+
+## Where the Decisions Are Recorded
+
+The decisions, experiments and retractions behind this project live in `brain/`
+as linked Markdown, and you can browse that directory if you'd like. For how a
+brain of this kind works in general, see https://github.com/hootener/brain.
+REFERENCES.md lists the published research that informs this project.
+
+## Status
+
+The project is MIT licensed and a work in progress. All three voices exist, and
+the casual and professional ones have been through review against real writing.
+The precise one has not, so I'd trust it least of the three.
+
+Try it on something a person is actually going to read.
