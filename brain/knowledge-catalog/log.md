@@ -4,6 +4,10 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-10
 
+**Creation** — [E0011](reference/E0011-eight-defect-harvest-passages-produced-nine-rules-where.md) Eight defect-harvest passages produced nine rules where nine rankings produced one
+
+**Creation** — [T0020](../tasks/voice/T0020-make-the-repository-honest-enough-to-open-source.md) Make the repository honest enough to open source
+
 **Creation** — [T0019](../tasks/voice/T0019-stop-voice-rewriting-from-deleting-content.md) Stop voice rewriting from deleting content
 
 **Creation** — [E0010](reference/E0010-a-pooled-marker-floor-pushed-output-away-from.md) A pooled marker floor pushed output away from the operator's real register

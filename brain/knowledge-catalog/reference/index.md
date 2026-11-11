@@ -17,3 +17,4 @@ than gathered carries `resource:`. A plain measurement carries none.
 | [E0008](E0008-the-profile-did-not-beat-the-control-and.md) | active | The profile did not beat the control and the operator scored at chance |
 | [E0009](E0009-the-profile-works-on-headings-and-not-on.md) | active | The profile works on headings and not on prose |
 | [E0010](E0010-a-pooled-marker-floor-pushed-output-away-from.md) | active | A pooled marker floor pushed output away from the operator's real register |
+| [E0011](E0011-eight-defect-harvest-passages-produced-nine-rules-where.md) | active | Eight defect-harvest passages produced nine rules where nine rankings produced one |
