@@ -6,7 +6,7 @@ description: "Thirteen gaps found by writing the professional register skill cra
 timestamp: "2026-11-09"
 tags: [voice, profile, craft, findings]
 status: active
-resource: ../../../skills/voice-professional/SKILL.md
+resource: ../../../plugin/skills/voice-professional/SKILL.md
 ---
 
 The professional register skill was written craft-first and profile-free, on

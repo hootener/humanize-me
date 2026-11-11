@@ -67,7 +67,7 @@ with it until the profile is right.
 Copy this prompt into Claude Code from the cloned repository:
 
 ```
-Read skills/voice-gather/SKILL.md and walk me through building a voice profile from my own writing. Start by asking me where I write.
+Read plugin/skills/voice-gather/SKILL.md and walk me through building a voice profile from my own writing. Start by asking me where I write.
 ```
 
 You end up with profiles at `~/.claude/voice/profile/<voice>.md`, and the skills
