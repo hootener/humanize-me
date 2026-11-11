@@ -5,7 +5,8 @@ title: "The operator's own registers ship as worked examples, never as loaded de
 description: "Three registers tuned on the operator ship in the repository so an adopter can read a filled-in profile and copy it if they want, but nothing is resolved or loaded from them automatically."
 timestamp: "2026-11-10"
 tags: [voice, profile, adoption, examples]
-status: active
+superseded_by: D0027-three-generic-voice-skills-ship-and-nothing-personal.md
+status: superseded
 serves: ../goals/G0005-someone-can-produce-their-own-voice-registers-by.md
 invariant: "No profile shipped in this repository is ever loaded automatically; a profile takes effect only where a user has put it."
 constrains: [voice/profile, skills, examples]
@@ -76,3 +77,17 @@ run the process; and to let the workshop be read before it is run.
   published writing and his sent mail; nothing quoting unpublished
   correspondence may appear in a file that ships, under
   [D0017](D0017-writing-reached-through-mcp-is-distilled-in-flight.md).
+
+# Superseded — 2026-11-11
+
+Replaced by [D0027](D0027-three-generic-voice-skills-ship-and-nothing-personal.md).
+
+This decision was the right answer to the question it was asked: *given that we
+are shipping one person's profiles, should they load?* No, because an adopter
+would write in a stranger's voice until they noticed.
+
+The question turned out to be the wrong one. **Nothing personal needs to ship at
+all.** The eighty-seven rules learned from one person were mostly craft wearing
+personal clothes, and generalising them produces three voice skills that help
+everyone and belong to nobody. The invariant here — that no shipped profile ever
+loads automatically — survives in a stronger form: there is no shipped profile.

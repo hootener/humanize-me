@@ -34,43 +34,34 @@ own.
 |---|---|
 | This register | The reader will act on your judgment and needs to be able to weigh it |
 | `voice-casual` | Your say-so is enough; no reasoning is owed |
-| `voice-research` | Your judgment is not enough; the claim needs evidence outside you |
+| `voice-precise` | Your judgment is not enough; the claim needs evidence outside you, stated exactly |
 
 Mixed pieces are normal. Write the section at the warrant its claims require.
 
-## Load the voice profile
+## Load the shared craft and your profile
 
-Look for a professional profile, in this order, and stop at the first hit:
+**Read `../_craft/writing-for-humans.md` first.** It holds what agent prose gets
+wrong in every voice — reader-modelling, correctness, rationed effects, the
+sentences and vocabulary that give a machine away. Most of the work is there.
 
-1. `./voice/profile/professional.md` — in the project: a team's house voice
+Then look for a profile for this voice, in order, and stop at the first hit:
+
+1. `./voice/profile/professional.md` — in the project: a team's shared voice
 2. `~/.claude/voice/profile/professional.md` — the writer's own
 
-**Then load `common.md` from the same directory, if it exists**, and apply it
-alongside. It holds the rules that proved true in more than one register — they
-were found separately in each and are the same rule, and keeping a copy in every
-register file meant rediscovering each one at the cost of a review round.
+If either exists, also load `common.md` from the same directory and apply it
+alongside; it holds rules that writer follows in every voice. Where a profile
+and `common.md` disagree, the profile wins.
 
-Where the two disagree, **the register profile wins.** It is the more specific
-of the two, and `common.md` is a generalisation drawn from it.
+**A miss is expected and is not an error.** Say which mode you are in, once,
+before you write:
 
-A miss is expected and is not an error. Say which mode you are in, once, before
-you write:
+- found → `voice: professional, profile <path>`
+- neither → `voice: professional, generic craft (no profile found)`
 
-- found → `voice: professional, profile <path>` (and `+ common` if that loaded)
-- neither → `voice: professional, generic (no profile found)`
-
-With a profile, follow it. The craft below asks two things of a claim and
-nothing more:
-
-1. **Every judgment has a holder** — yours, or someone you name.
-2. **Every confidence is something you could be wrong about.**
-
-A profile does not negotiate those two: a claim resting on nobody is not a
-professional claim in anyone's voice. Everything else below is voice, and the
-profile governs it — including *how much* you hedge and which words you hedge
-with.
-
-Generic mode is a real mode, not a degraded one. Everything below applies.
+Without a profile you do the generic job, and that is a real mode rather than a
+degraded one. A profile makes the prose sound like one particular person; the
+craft makes it stop sounding like a machine, which is most of the value.
 
 ## Stop doing these
 
@@ -157,136 +148,6 @@ to be wrong, or it carries no information.
 - **Disagree in the declarative.** A disagreement softened into a question
   ("have we considered whether...?") makes the reader do the work of finding
   your actual objection.
-
-## Write for a reader who is not you
-
-**Everything in this section is register-independent craft.** It applies to
-casual and research writing identically, and it exists here only because this is
-the first register written. When the others are written it should move to a
-shared layer.
-
-These are the failures of a writer who has read the source material and forgotten
-that the reader has not. They were named by a reviewer going through a generated
-document paragraph by paragraph, and three of them recurred three times each in
-one pass.
-
-**Introduce a term before you use it.** Measured three times in one document:
-*guidance*, then *grounds* and *tone*, then *register* — each used as though
-established, none introduced. The reviewer's diagnosis is the clearest statement
-of it: *"Since the writer knows everything ahead of time, it writes like you,
-the reader, know everything ahead of time."*
-
-The fix is cheap and does not need a definitions section. **Gloss inline, on
-first use, in a parenthesis**: "a casual medium (a chat app)", "research-based
-contexts where evidence and empirical facts are important". Four words, in
-passing, and the term is earned.
-
-**Every fact earns its place by answering a question the reader has right
-there.** Measured five times in one document. An install section explained that
-nothing is symlinked into the project — true, load-bearing in the project's own
-decision record, and meaningless to someone who has never considered the
-alternative. The reviewer: *"I understand what you're saying. I just don't know
-why you're saying it here. Why do these things matter?"*
-
-This is the mirror of the rule above. One writes as though the reader **knows**
-what the author knows; this writes as though the reader **cares** what the
-author cares about. Both come from failing to model the reader as a separate
-person with their own questions at that moment.
-
-The hazard is sharpest when a project keeps a written record of its own
-reasoning. A fact can travel from a decision record, to an internal note, to a
-stranger's install instructions, without anyone at any step asking whether the
-stranger needed it.
-
-**Say what the thing does before you say how to use it.** A document that
-diagnoses a problem, describes a taxonomy and then gives install commands has
-skipped the sentence the reader came for. *"It's like we didn't really come to a
-point."*
-
-**An opening carries the broad takeaway.** Nuance, metrics and caveats belong to
-the section that owns them. An introduction reaching for terms it has not earned
-is usually an introduction doing a later section's job.
-
-**Do not explain someone else's concept.** Link to it. A README is not the place
-to teach a dependency.
-
-**A heading says what its section does for the reader, not what it contains.**
-"The Three Registers" announces a count and was rejected outright — the reviewer
-could not even propose a fix, which is itself a signal that a heading has failed
-below the level of wording.
-
-**Say it plainly.** "Carries no model of the grounds on which a claim rests" is
-philosophy-shaped. Say what happens instead. Abstract nominalisations are the
-most reliable way to sound like nobody.
-
-**Do not restate a complete statement.** A sentence that adds nothing to the one
-before it reads as padding even when it is true.
-
-**Compression is for landings, not explanations.** A short declarative closing a
-paragraph earns its brevity. An explanation does not — give it the room it
-needs. The same reviewer who cut a redundant sentence expanded a compressed
-example into a full one in the same pass.
-
-## Keep what you were given, and invent nothing
-
-Two failures sit either side of a rewrite, and only one of them is loud.
-
-**Do not invent what you were not given.** This is measured. Asked to write
-three technical posts from briefs containing no URLs, a writer produced **six
-fabricated hyperlinks** — `docs.github.com/...`, `github.com/apps/...`,
-`about.codecov.io/blog/...` — every one of them correctly shaped, plausible, and
-not supplied by anything. Plausible-looking links are the easiest thing in the
-world to generate and among the worst things to be wrong about, because a reader
-clicks them.
-
-So: no URL you were not given. No version number, date, metric, name or quoted
-error you were not given. If the source says a link belongs somewhere and does
-not say where it points, say so in words and leave the link out. *"Installation
-happens on GitHub"* is correct; `[on GitHub](https://github.com/apps/...)` is a
-guess wearing a link's clothes.
-
-**And keep what you were given.** Rewriting moves whole sentences, and the
-things most easily lost are the ones that sit outside a sentence rather than
-inside one — a link, a label like *Update:* or *Deprecated:*, a standalone
-instruction, a caveat in its own clause. Numbers tend to survive because they
-ride along inside a clause being reworded. Separate objects do not.
-
-Before finishing, check the output still carries every link, number, identifier,
-product term, meaningful label, caveat and reader instruction that the input had
-— no more and no fewer.
-
-**Where voice and content conflict, content wins.** A sentence that sounds
-exactly like the writer and omits where to click is worse than a flat sentence
-that tells the reader where to click.
-
-## Correctness is not negotiable by a voice
-
-**Whatever a voice profile says, the prose you produce is correctly spelled,
-punctuated and capitalised.**
-
-A corpus records how someone types. You are producing how they write. Those
-differ, and where they differ the writing wins — a reader receiving generated
-text did not watch it being typed and has no reason to read sloppiness as
-intimacy.
-
-This matters because the most *distinctive* measurements in an informal corpus
-are often the mechanical ones. One casual corpus had 55% of messages starting
-lowercase and 86% ending with no full stop. Those are the clearest fingerprints
-in the whole sample and they are the wrong thing to copy: they are artefacts of
-a chat box, not features of a voice.
-
-So: **lowercase message openings, missing terminal punctuation, typos, doubled
-words and dropped articles are never reproduced**, however faithfully they were
-measured.
-
-What a profile *does* govern, and what you should follow closely: contraction
-rate, sentence length and rhythm, deliberate fragments, informal diction,
-profanity, how text is broken into messages or paragraphs, and punctuation the
-writer genuinely avoids — a writer who never uses a semicolon should still never
-get one.
-
-If a profile instructs you to write incorrectly, the profile is describing
-typing. Follow its voice and fix its spelling.
 
 ## Before you send it
 

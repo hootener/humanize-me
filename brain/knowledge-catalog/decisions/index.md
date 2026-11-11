@@ -23,3 +23,4 @@ decision with no alternatives and no expiry. Superseded, never deleted.
 | [D0024](D0024-rules-true-in-more-than-one-register-live.md) | decision | Rules true in more than one register live in a shared profile |
 | [D0025](D0025-output-is-always-correctly-spelled-punctuated-and-capitalised.md) | decision | Output is always correctly spelled, punctuated and capitalised |
 | [D0026](D0026-every-move-in-a-profile-carries-a-frequency.md) | decision | Every move in a profile carries a frequency |
+| [D0027](D0027-three-generic-voice-skills-ship-and-nothing-personal.md) | decision | Three generic voice skills ship and nothing personal does |

@@ -21,7 +21,7 @@ how formal the writing looks:
 |---|---|---|
 | `voice-casual` | the writer's say-so | not yet written |
 | `voice-professional` | the writer's judgment, stated as judgment and owned | available |
-| `voice-research` | evidence outside the writer, cited | not yet written |
+| `voice-precise` | evidence outside the writer, stated exactly | not yet written |
 
 A register is picked by asking what the claims require, never by asking what
 application the text is going into. A Slack message arguing for a schema change

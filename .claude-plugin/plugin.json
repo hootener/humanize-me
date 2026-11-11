@@ -14,7 +14,9 @@
     "communication"
   ],
   "skills": [
+    "./skills/voice-casual",
     "./skills/voice-professional",
+    "./skills/voice-precise",
     "./skills/voice-gather",
     "./skills/voice-harvest"
   ]

@@ -5,7 +5,7 @@ title: "Registers are organized by burden of proof, not formality"
 description: "The three registers — casual, professional, research — are distinguished by what a claim has to rest on, and a register is selected on that rather than on the medium it will be sent through."
 timestamp: "2026-11-09"
 tags: [voice, registers, taxonomy]
-status: active
+status: amended
 serves: ../goals/G0003-an-agent-writes-human-facing-prose-in-the.md
 invariant: "A register is defined and selected by what its claims must rest on, never by medium or formality."
 constrains: [skills, voice/profile]
@@ -68,3 +68,50 @@ not only a paper.
 - Corpus filing inherits the axis, which is what
   [D0016](D0016-the-corpus-is-sorted-into-per-register-folders.md) asks the
   operator to do by hand.
+
+# Amendment — 2026-11-11
+
+*The axis stands. The third register's name does not, and the replacement
+shifts its emphasis in a way worth stating rather than smuggling.*
+
+**`research` is renamed `precise`**, at the operator's instruction:
+
+> I also think we need to change the name of the research voice modality to
+> "Precise" and state that it's very specifically for really precise,
+> objective, fact-based communication.
+
+**Why the original name failed.** This decision rejected `evidentiary` as
+stuffy, `rigorous` as implying the other two are not, and `technical` as naming
+a subject rather than a warrant level. It then chose `research` and claimed the
+warrant definition would stop it reading as academic. It did not. `research`
+names the kind of document people picture — a paper — and the voice is not about
+a subject at all. An incident post-mortem, a pricing analysis and a measurement
+write-up all belong here.
+
+**What shifts, and it is not nothing.** The axis of this decision is *what a
+claim has to rest on*. "Research" named that directly. "Precise" names the
+**character of the prose** — exactness about what is known, how well, and what
+is not — which is a consequence of the warrant rather than the warrant itself.
+
+The register is therefore now defined by both, and the warrant stays primary:
+**a claim rests on evidence outside the writer, and the prose is exact about
+what that evidence does and does not support.** A confident sentence resting on
+good evidence but vague about its bounds fails this register, which the old
+definition did not clearly catch.
+
+**The wording of the axis is separately dead.** The operator rejected *"what a
+claim has to rest on"* twice while reviewing generated prose, calling it "too
+claudy" — *"Nobody says that to another person."* His replacement, which is now
+the form used in anything a reader sees:
+
+> three different levels of proving it, or showing your work
+
+The distinction this amendment turns on: **the taxonomy is right and its
+original phrasing is unusable in the product.** The decision keeps its own
+language for the record; the README, the skills and the profiles use his.
+
+**What changed, and what deliberately did not.** `skills/voice-research/` is now
+`skills/voice-precise/`, and the README, the craft skill and the placeholder
+follow. Task logs and evidence nodes that say "research" are **left alone** —
+they were accurate on the day they were written, and editing them would be
+rewriting history rather than recording a change.
