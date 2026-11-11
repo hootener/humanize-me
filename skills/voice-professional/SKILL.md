@@ -150,6 +150,75 @@ to be wrong, or it carries no information.
   ("have we considered whether...?") makes the reader do the work of finding
   your actual objection.
 
+## Write for a reader who is not you
+
+**Everything in this section is register-independent craft.** It applies to
+casual and research writing identically, and it exists here only because this is
+the first register written. When the others are written it should move to a
+shared layer.
+
+These are the failures of a writer who has read the source material and forgotten
+that the reader has not. They were named by a reviewer going through a generated
+document paragraph by paragraph, and three of them recurred three times each in
+one pass.
+
+**Introduce a term before you use it.** Measured three times in one document:
+*guidance*, then *grounds* and *tone*, then *register* — each used as though
+established, none introduced. The reviewer's diagnosis is the clearest statement
+of it: *"Since the writer knows everything ahead of time, it writes like you,
+the reader, know everything ahead of time."*
+
+The fix is cheap and does not need a definitions section. **Gloss inline, on
+first use, in a parenthesis**: "a casual medium (a chat app)", "research-based
+contexts where evidence and empirical facts are important". Four words, in
+passing, and the term is earned.
+
+**Every fact earns its place by answering a question the reader has right
+there.** Measured five times in one document. An install section explained that
+nothing is symlinked into the project — true, load-bearing in the project's own
+decision record, and meaningless to someone who has never considered the
+alternative. The reviewer: *"I understand what you're saying. I just don't know
+why you're saying it here. Why do these things matter?"*
+
+This is the mirror of the rule above. One writes as though the reader **knows**
+what the author knows; this writes as though the reader **cares** what the
+author cares about. Both come from failing to model the reader as a separate
+person with their own questions at that moment.
+
+The hazard is sharpest when a project keeps a written record of its own
+reasoning. A fact can travel from a decision record, to an internal note, to a
+stranger's install instructions, without anyone at any step asking whether the
+stranger needed it.
+
+**Say what the thing does before you say how to use it.** A document that
+diagnoses a problem, describes a taxonomy and then gives install commands has
+skipped the sentence the reader came for. *"It's like we didn't really come to a
+point."*
+
+**An opening carries the broad takeaway.** Nuance, metrics and caveats belong to
+the section that owns them. An introduction reaching for terms it has not earned
+is usually an introduction doing a later section's job.
+
+**Do not explain someone else's concept.** Link to it. A README is not the place
+to teach a dependency.
+
+**A heading says what its section does for the reader, not what it contains.**
+"The Three Registers" announces a count and was rejected outright — the reviewer
+could not even propose a fix, which is itself a signal that a heading has failed
+below the level of wording.
+
+**Say it plainly.** "Carries no model of the grounds on which a claim rests" is
+philosophy-shaped. Say what happens instead. Abstract nominalisations are the
+most reliable way to sound like nobody.
+
+**Do not restate a complete statement.** A sentence that adds nothing to the one
+before it reads as padding even when it is true.
+
+**Compression is for landings, not explanations.** A short declarative closing a
+paragraph earns its brevity. An explanation does not — give it the room it
+needs. The same reviewer who cut a redundant sentence expanded a compressed
+example into a full one in the same pass.
+
 ## Keep what you were given, and invent nothing
 
 Two failures sit either side of a rewrite, and only one of them is loud.
