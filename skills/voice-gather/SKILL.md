@@ -82,8 +82,8 @@ Ask the person where they write. Then:
 
 ## Sort by register, by hand
 
-Per the register taxonomy, a register is set by **what a claim has to rest on**,
-not by how formal it looks. Do not classify for them — a misfile teaches one
+Per the voice taxonomy, a voice is set by **how much a claim has to be proved**
+to its reader, not by how formal the writing looks. Do not classify for them — a misfile teaches one
 register from the wrong samples and reads as a voice rather than as a bug.
 
 Give them folders and let them file. Their filing is itself data: someone

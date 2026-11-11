@@ -10,7 +10,7 @@ and it applies whether or not anyone has built a voice profile.
 ## Write for a reader who is not you
 
 **Everything in this section is register-independent craft.** It applies to
-casual and research writing identically, and it exists here only because this is
+casual and precise writing identically, and it exists here only because this is
 the first register written. When the others are written it should move to a
 shared layer.
 
@@ -26,7 +26,7 @@ of it: *"Since the writer knows everything ahead of time, it writes like you,
 the reader, know everything ahead of time."*
 
 The fix is cheap and does not need a definitions section. **Gloss inline, on
-first use, in a parenthesis**: "a casual medium (a chat app)", "research-based
+first use, in a parenthesis**: "a casual medium (a chat app)", "evidence-based
 contexts where evidence and empirical facts are important". Four words, in
 passing, and the term is earned.
 
