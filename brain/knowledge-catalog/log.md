@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-11
 
+**Creation** — [D0024](decisions/D0024-rules-true-in-more-than-one-register-live.md) Rules true in more than one register live in a shared profile
+
 **Creation** — [T0022](../tasks/voice/T0022-build-the-casual-register-profile.md) Build the casual register profile
 
 **Creation** — [E0012](reference/E0012-unedited-professional-writing-contradicts-three-absolutes-in-the.md) Unedited professional writing contradicts three absolutes in the profile

@@ -45,10 +45,18 @@ Look for a professional profile, in this order, and stop at the first hit:
 1. `./voice/profile/professional.md` — in the project: a team's house voice
 2. `~/.claude/voice/profile/professional.md` — the writer's own
 
+**Then load `common.md` from the same directory, if it exists**, and apply it
+alongside. It holds the rules that proved true in more than one register — they
+were found separately in each and are the same rule, and keeping a copy in every
+register file meant rediscovering each one at the cost of a review round.
+
+Where the two disagree, **the register profile wins.** It is the more specific
+of the two, and `common.md` is a generalisation drawn from it.
+
 A miss is expected and is not an error. Say which mode you are in, once, before
 you write:
 
-- found → `voice: professional, profile <path>`
+- found → `voice: professional, profile <path>` (and `+ common` if that loaded)
 - neither → `voice: professional, generic (no profile found)`
 
 With a profile, follow it. The craft below asks two things of a claim and

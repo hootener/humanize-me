@@ -24,7 +24,7 @@ gather, draft, harvest — on a register that did not exist.
 - [x] Privacy handled at gathering time, not after
 - [x] A profile whose markers were measured rather than reasoned
 - [x] A `gaps:` field stating what the corpus does not cover
-- [ ] A harvest run against it, with the named defects encoded
+- [x] A harvest run against it, with the named defects encoded
 
 # Out of scope
 
@@ -74,3 +74,50 @@ accuracy. No held-out casual exists to calibrate against, and the page says so.
 **A fourth measurement artefact**, caught before reporting: sentence medians of
 35 to 129 were the splitter treating each unpunctuated message as one sentence.
 Words-per-message is the right measure — 14.1 generated against 17.2 corpus.
+
+## 2026-11-11 — harvest run: 28 rules from six passages
+
+Best yield of any round. Six passages produced **28 rules, eleven of them high
+severity**, against eleven from eight passages in the professional harvest.
+
+**Three rules arrived in both registers and forced an architectural change.**
+The head noun is never implicit, now at five confirmations across two registers.
+A vague abstraction gets replaced by a precise phrase. And no trailing weak
+phrase — where the casual instance *settled* an ambiguity the professional
+profile had recorded and could not resolve, because his two professional
+examples disagreed on whether the rule was about prepositions specifically. "On
+the way through" is adverbial and he cut it for the same reason, so the rule is
+trailing weak phrases generally.
+
+That is [D0024](../../knowledge-catalog/decisions/D0024-rules-true-in-more-than-one-register-live.md):
+cross-register rules live in `common.md`, loaded alongside the register profile,
+with the register winning on conflict. The shared layer was in the first design
+sketch for this project and was never built, because until now nothing had
+earned a place in it. Seven rules now have.
+
+**Two defects were mine, not the generator's.** The lowercase marker was
+measured on *message* starts and the generator extended it to sentence starts
+inside a message; he queried it twice, in two passages, both times as a
+question. And the generator drifted British across three consecutive passages —
+"unlabelled", "realising", "in amongst" — with nothing in the profile saying
+not to. Both are now stated.
+
+**One finding cannot be verified**, and the reason is structural. The
+post-full-stop capitalisation rate cannot be re-measured because the corpus was
+deleted after measuring, per
+[D0017](../../knowledge-catalog/decisions/D0017-writing-reached-through-mcp-is-distilled-in-flight.md).
+His two queries are the evidence and will have to be. In-flight-only handling
+means findings arrive after the data is gone, which D0017's consequences do not
+currently mention.
+
+**He named the failure mode better than the project had:** *"You've thrown a
+dart and hit the target, but not the bullseye."* Several rejected lines were the
+right move executed by someone else — and he rejected a domestic metaphor while
+his corpus is full of domestic metaphors. The instinct is right, the instance is
+wrong, and no profile here can yet tell them apart.
+
+**And he called this project's central formulation "too claudy."**
+[D0014](../../knowledge-catalog/decisions/D0014-registers-are-organized-by-burden-of-proof-not.md)
+defines registers by "what a claim has to rest on". His version: *"three
+different levels of proving it or showing your work."* The taxonomy can be right
+while its wording is unusable in the product.

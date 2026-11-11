@@ -20,3 +20,4 @@ decision with no alternatives and no expiry. Superseded, never deleted.
 | [D0021](D0021-a-profile-is-derived-per-text-population-not.md) | decision | A profile is derived per text population, not from paragraphs alone |
 | [D0022](D0022-the-preference-signal-is-named-defects-never-blind.md) | decision | The preference signal is named defects, never blind rankings |
 | [D0023](D0023-the-operator-s-own-registers-ship-as-worked.md) | decision | The operator's own registers ship as worked examples, never as loaded defaults |
+| [D0024](D0024-rules-true-in-more-than-one-register-live.md) | decision | Rules true in more than one register live in a shared profile |

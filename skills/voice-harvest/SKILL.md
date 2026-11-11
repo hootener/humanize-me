@@ -131,6 +131,17 @@ complaint and once, most usefully, as praise for a passage that got it right.
 Append them, grouped, with the person's own words quoted where they said it
 well. A rule they named once should never need naming twice.
 
+**Check whether the rule has now been named in a second register.** If it has,
+it is not a register rule — it is a fact about the person, and it moves to the
+shared profile beside the register files. Five rules reached that bar across two
+harvests, and one of them *settled an ambiguity* the first register had recorded
+and could not resolve on its own. Finding the same rule twice costs a review
+round, which is the one resource this process actually spends.
+
+Do not promote a rule because it looks like it generalises. One register's most
+striking marker — messages starting lowercase — does not generalise at all.
+Two registers, named by the person, is the bar.
+
 **Sort craft from voice as you go.** Most of what people name is not personal.
 "You used a term before introducing it" is a failure of writing for a reader and
 belongs in the craft skill, where every user gets it. "I write ranges as 95% to
