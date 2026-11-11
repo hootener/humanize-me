@@ -121,3 +121,36 @@ wrong, and no profile here can yet tell them apart.
 defines registers by "what a claim has to rest on". His version: *"three
 different levels of proving it or showing your work."* The taxonomy can be right
 while its wording is unusable in the product.
+
+## 2026-11-11 — second harvest: 25 rules, and the defects changed kind
+
+Six new passages on a deliberately wider range of subjects. **25 rules**, and
+the three mechanical corrections from round one all held: lowercase message
+starts went from 46 of 52 to **0 of 40**, British spellings from three passages
+to **none**, em-dashes and semicolons stayed at zero.
+
+**The defects moved from structure to rhythm.** Round one found verbless
+fragments, flat signoffs, bare demonstratives and jokes built on numbers. Round
+two found three moves used **too often** — foreshadowing, paired clipped
+sentences, and the asyndetic triplet — none of which he called wrong. That is
+[D0026](../../knowledge-catalog/decisions/D0026-every-move-in-a-profile-carries-a-frequency.md):
+every move now carries a rate, and rates are counted across the whole batch
+because his strongest complaint was explicitly cross-passage.
+
+**He resolved a contradiction in his own feedback.** Clipped sentences were
+overused in P1 and P2 and praised in P5. The difference is the setup: *"a very
+short, sort of deprecating humorous sentence after a long sentence, so the flow
+is really nice."* A short line lands a long one; a pair of them has nothing to
+land against. That is the condition the short-landing rule had lacked through
+four confirmations, and it is now in `common.md`.
+
+**The implicit-referent rule reached seven confirmations**, including one inside
+a joke — "and now it whistles" could only refer to the sixteen-year-old, so the
+punchline failed on grammar before it failed on comedy.
+
+**One passage was judged good as a whole**, the first in twelve: *"that's
+actually a pretty good paragraph."* One bad clause, one long sentence, four
+endorsed lines.
+
+Five endorsed punchlines now, five for five, identical in construction every
+time: self-directed, landing the passage, containing no number.

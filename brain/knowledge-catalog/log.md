@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-11
 
+**Creation** — [D0026](decisions/D0026-every-move-in-a-profile-carries-a-frequency.md) Every move in a profile carries a frequency
+
 **Creation** — [D0025](decisions/D0025-output-is-always-correctly-spelled-punctuated-and-capitalised.md) Output is always correctly spelled punctuated and capitalised
 
 **Creation** — [D0024](decisions/D0024-rules-true-in-more-than-one-register-live.md) Rules true in more than one register live in a shared profile

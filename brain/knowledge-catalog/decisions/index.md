@@ -21,4 +21,5 @@ decision with no alternatives and no expiry. Superseded, never deleted.
 | [D0022](D0022-the-preference-signal-is-named-defects-never-blind.md) | decision | The preference signal is named defects, never blind rankings |
 | [D0023](D0023-the-operator-s-own-registers-ship-as-worked.md) | decision | The operator's own registers ship as worked examples, never as loaded defaults |
 | [D0024](D0024-rules-true-in-more-than-one-register-live.md) | decision | Rules true in more than one register live in a shared profile |
-| [D0025](D0025-output-is-always-correctly-spelled-punctuated-and-capitalised.md) | decision | Output is always correctly spelled punctuated and capitalised |
+| [D0025](D0025-output-is-always-correctly-spelled-punctuated-and-capitalised.md) | decision | Output is always correctly spelled, punctuated and capitalised |
+| [D0026](D0026-every-move-in-a-profile-carries-a-frequency.md) | decision | Every move in a profile carries a frequency |

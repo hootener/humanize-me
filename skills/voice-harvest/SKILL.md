@@ -73,6 +73,21 @@ the profile, and nothing else.
 Forbid it the corpus, the source documents and any earlier arm's output,
 explicitly and by path.
 
+### 2b. Review the batch as a batch
+
+**Before anyone sees them, read all the passages together and count the moves.**
+
+A generator writing passages independently cannot see across them, and the
+defect this catches is invisible inside any single file. In one round of six
+short passages, three separate moves each appeared twice — foreshadowing, a pair
+of clipped sentences, and an asyndetic triplet. Every instance was defensible
+alone. The reviewer's complaint was *"taking P1 and P2 together, we're
+foreshadowing way too much."*
+
+If a profile gives a move a rate of `sparingly`, that rate is spent across the
+batch, not per file. Regenerate the offenders rather than shipping a set that
+repeats itself.
+
 ### 3. Present the passages
 
 Short. Eight passages of 90–120 words beats two documents — more judgements,
@@ -130,6 +145,12 @@ complaint and once, most usefully, as praise for a passage that got it right.
 
 Append them, grouped, with the person's own words quoted where they said it
 well. A rule they named once should never need naming twice.
+
+**Record a rate with every move.** A move with no frequency is an instruction to
+use it every time, and the second round of one harvest produced three defects
+that were purely rate. Ask: always, often, sparingly, once per piece? Where the
+corpus supports an observed frequency, record that; otherwise record it as a
+judgement and say so.
 
 **Check whether the rule has now been named in a second register.** If it has,
 it is not a register rule — it is a fact about the person, and it moves to the
