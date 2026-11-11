@@ -16,4 +16,4 @@ Tasks for the **voice** initiative. `brain/bin/status voice` shows what is claim
 | [T0020](T0020-make-the-repository-honest-enough-to-open-source.md) | In Progress | Make the repository honest enough to open source |
 | [T0021](T0021-build-the-voice-workshop.md) | In Progress | Build the voice workshop |
 | [T0022](T0022-build-the-casual-register-profile.md) | In Progress | Build the casual register profile |
-| [T0023](T0023-build-the-precise-register-profile.md) | Not Ready | Build the precise register profile |
+| [T0023](T0023-build-the-precise-register-profile.md) | In Progress | Build the precise register profile |

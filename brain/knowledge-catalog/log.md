@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-11
 
+**Creation** — [D0028](decisions/D0028-a-move-s-rate-is-set-per-register.md) A move's rate is set per register, not per profile
+
 **Creation** — [T0023](../tasks/voice/T0023-build-the-precise-register-profile.md) Build the precise register profile
 
 **Creation** — [D0027](decisions/D0027-three-generic-voice-skills-ship-and-nothing-personal.md) Three generic voice skills ship and nothing personal does

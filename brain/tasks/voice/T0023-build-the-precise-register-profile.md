@@ -3,7 +3,7 @@ id: T0023
 type: task
 title: "Build the precise register profile"
 description: "The third register, built from a split corpus — voice from a public incident post-mortem, evidence discipline from peer-reviewed papers, academic house style recorded and discarded."
-status: In Progress
+status: Testing
 category: enhancement
 initiative: voice
 blocked_by: []
@@ -75,3 +75,44 @@ less of the author survives in it, and the measurement above is the worked case.
 **Thin, and said so.** One post-mortem is the entire voice sample. The everyday
 precise writing someone would actually ask an agent for — an internal analysis,
 a data memo, an RFC — is absent and recorded as unknown rather than covered.
+
+# Log — 2026-11-11, the harvest
+
+Six passages, eleven rules, two clean. The full result is
+[E0013](../../knowledge-catalog/reference/E0013-the-precise-harvest-produced-the-lowest-defect-rate.md);
+what follows is what changed in the profile.
+
+The profile went from 1,142 to 1,863 words. Nine of the eleven rules were added
+to it. Two of them changed sections that were already there.
+
+**The split was drawn on the wrong axis.** The profile above says write like the
+post-mortem and take only evidence discipline from the papers, because
+reproducing academic register would produce a journal submission. The second
+half of that is right. The first half was too broad: he rewrote a generated
+first-person line into an impersonal one and called it "a more professional
+precise way to say it". The split is now by what the sentence is doing — first
+person for owning an error or a judgment, impersonal for a finding that
+generalises — and the papers are the right model for one of those two jobs
+rather than for none.
+
+**Two professional moves are effectively `never` here.** The balanced antithesis
+and the short aphoristic landing, both rejected as "too flowery" in the same
+passage. The short landing has three confirmations in professional. A rule can
+survive a register change while its rate does not, which
+[D0026](../../knowledge-catalog/decisions/D0026-every-move-in-a-profile-carries-a-frequency.md)
+did not allow for;
+[D0028](../../knowledge-catalog/decisions/D0028-a-move-s-rate-is-set-per-register-not.md)
+now does.
+
+**A new section on order of argument**, holding three of the eleven rules —
+method and controls before results, define the term before the finding,
+enumerate in parallel before judging. This register's defects are mostly
+sequence rather than wording, which none of the previous three harvests showed.
+
+**"Meaning" marks the inference.** The profile already said to distinguish
+measured from inferred and gave no construction for doing it. His is *"208 of
+those comments were from 2026, meaning they were written by coding agents"* —
+number, then what you take it to mean, with the joint visible.
+
+The frontmatter's `verified` line now records the harvest. It still records no
+held-out set and no blind trial, both of which remain true.
