@@ -79,7 +79,13 @@ can correct it.
   satisfy. They were written before it. They are the operator's own and do not
   ship, so this costs nothing externally, but any claim that the format is
   uniform is false until they are reconciled.
-- `voice-draft` has no harvest behind it and cannot get one the way a voice
-  profile can, because its output is a file rather than prose a person can
-  react to. Its evidence level will stay low until a second person builds a
-  profile with it.
+- `voice-draft` cannot get a harvest the way a voice profile can, because its
+  output is a file rather than prose a person can react to. A two-arm test
+  against an unguided control was run the same day
+  ([E0014](../reference/E0014-voice-draft-changed-every-drafting-behaviour-it-claims.md)):
+  it passed all seven pre-registered mechanical checks and the control
+  reproduced E0010 from scratch, publishing a pooled contraction target of
+  ~23/1k after itself measuring 36 and 4. That tests drafting behaviour, not
+  whether the resulting profile produces better prose, and it cannot separate
+  the skill from careful instruction in general. The skill's stated evidence
+  level stays low.

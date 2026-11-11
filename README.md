@@ -4,11 +4,9 @@ A set of skills for coding agents, shipped as a plugin for Claude Code. It
 changes what your agent writes when a person is going to read it, so the prose
 sounds less like a robot wrote it.
 
-There are two ways in:
-
-1. Install the plugin and your agent picks up the behavior immediately.
-2. Point it at your own writing and build a profile, so those skills sound
-   like you and not like a generic competent writer.
+Install the plugin and your agent picks up the behavior immediately. From there
+you can point it at your own writing and build a profile, so the skills sound
+like you and not like a generic competent writer.
 
 ## Why This Project Exists
 
@@ -37,9 +35,8 @@ In Claude Code:
 ```
 
 The three voices (casual, professional and precise) ship with general writing
-craft, so the output will already read differently from stock agent prose, but
-it will not sound like you in particular. If you want these voices to sound like
-you, build a profile out of your own writing.
+craft, so the output will already read differently from stock agent prose. It
+will not sound like you in particular.
 
 ## Using the Skills
 
@@ -58,11 +55,12 @@ voice-professional for this PR description*.
 | `voice-professional` | a decision memo, a status update, a PR description, a code review comment, a reply to a colleague | your judgment, owned and open to being wrong |
 | `voice-precise` | an incident post-mortem, a measurement write-up, an analysis whose numbers someone will act on | evidence outside you, and the prose is exact about what it does and does not show |
 
-These voices are three different levels of proving it to a reader. They dictate
-how you show your work based on the context you are communicating in: a casual
-chat with friends, the kind of communication you would do at work, or the very
-precise communication you need for things like incident post-mortems or academic
-writing.
+These voices are three different levels of proving it to a reader, and you pick
+by what you are claiming rather than by where the text is going. A Slack message
+arguing for a schema change is casual in form and professional in what it owes
+the reader -- your colleague wants to know why, not just what. A long formal
+email that only confirms a meeting time is the other way around. Most real
+writing is mixed, so write each part at the level its claims need.
 
 ### The three profile skills
 
