@@ -4,4 +4,6 @@
 consumes. A spec carries `serves:` pointing at the goal it pursues; that edge
 is what lets a reverse walk terminate in Intent.
 
-*(none yet — `brain/bin/new spec "<feature>"`)*
+| id | Status | Title |
+|---|---|---|
+| [S0001](S0001-the-voice-workshop.md) | active | The voice workshop |

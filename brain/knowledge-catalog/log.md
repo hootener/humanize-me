@@ -2,6 +2,12 @@
 
 Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
+## 2026-11-11
+
+**Creation** — [T0021](../tasks/voice/T0021-build-the-voice-workshop.md) Build the voice workshop
+
+**Creation** — [S0001](specs/S0001-the-voice-workshop.md) The voice workshop
+
 ## 2026-11-10
 
 **Creation** — [D0023](decisions/D0023-the-operator-s-own-registers-ship-as-worked.md) The operator's own registers ship as worked examples, never as loaded defaults
