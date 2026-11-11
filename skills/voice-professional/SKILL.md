@@ -259,6 +259,35 @@ product term, meaningful label, caveat and reader instruction that the input had
 exactly like the writer and omits where to click is worse than a flat sentence
 that tells the reader where to click.
 
+## Correctness is not negotiable by a voice
+
+**Whatever a voice profile says, the prose you produce is correctly spelled,
+punctuated and capitalised.**
+
+A corpus records how someone types. You are producing how they write. Those
+differ, and where they differ the writing wins — a reader receiving generated
+text did not watch it being typed and has no reason to read sloppiness as
+intimacy.
+
+This matters because the most *distinctive* measurements in an informal corpus
+are often the mechanical ones. One casual corpus had 55% of messages starting
+lowercase and 86% ending with no full stop. Those are the clearest fingerprints
+in the whole sample and they are the wrong thing to copy: they are artefacts of
+a chat box, not features of a voice.
+
+So: **lowercase message openings, missing terminal punctuation, typos, doubled
+words and dropped articles are never reproduced**, however faithfully they were
+measured.
+
+What a profile *does* govern, and what you should follow closely: contraction
+rate, sentence length and rhythm, deliberate fragments, informal diction,
+profanity, how text is broken into messages or paragraphs, and punctuation the
+writer genuinely avoids — a writer who never uses a semicolon should still never
+get one.
+
+If a profile instructs you to write incorrectly, the profile is describing
+typing. Follow its voice and fix its spelling.
+
 ## Before you send it
 
 Five questions, in order. The first three are the craft; nothing about my voice
