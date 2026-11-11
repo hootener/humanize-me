@@ -4,6 +4,10 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-10
 
+**Creation** — [D0023](decisions/D0023-the-operator-s-own-registers-ship-as-worked.md) The operator's own registers ship as worked examples, never as loaded defaults
+
+**Creation** — [G0005](goals/G0005-someone-can-produce-their-own-voice-registers-by.md) Someone can produce their own voice registers by cloning this repository
+
 **Creation** — [E0011](reference/E0011-eight-defect-harvest-passages-produced-nine-rules-where.md) Eight defect-harvest passages produced nine rules where nine rankings produced one
 
 **Creation** — [T0020](../tasks/voice/T0020-make-the-repository-honest-enough-to-open-source.md) Make the repository honest enough to open source

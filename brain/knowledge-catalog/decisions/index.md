@@ -19,3 +19,4 @@ decision with no alternatives and no expiry. Superseded, never deleted.
 | [D0020](D0020-craft-governs-ownership-and-falsifiability-a-profile-governs.md) | decision | Craft governs ownership and falsifiability; a profile governs how much |
 | [D0021](D0021-a-profile-is-derived-per-text-population-not.md) | decision | A profile is derived per text population, not from paragraphs alone |
 | [D0022](D0022-the-preference-signal-is-named-defects-never-blind.md) | decision | The preference signal is named defects, never blind rankings |
+| [D0023](D0023-the-operator-s-own-registers-ship-as-worked.md) | decision | The operator's own registers ship as worked examples, never as loaded defaults |

@@ -5,7 +5,7 @@ title: "humanize-me ships as a Claude Code plugin and the profile lives at user 
 description: "The library is its own marketplace and installs once at user scope; the profile sits beside it per user, with a per-register project override for a shared house voice."
 timestamp: "2026-11-09"
 tags: [distribution, adoption, plugin, profile]
-status: active
+status: amended
 serves: ../goals/G0002-humanize-me-installs-into-another-project-in-one.md
 invariant: "The plugin is the only install path, and a register's profile is resolved from the project first and the user second."
 constrains: [.claude-plugin, skills, voice/profile]
@@ -96,3 +96,48 @@ voice and their own voice.
   confused with a corpus. A corpus is never committed, and under
   [D0017](D0017-writing-reached-through-mcp-is-distilled-in-flight.md) the
   personal text behind a casual profile is never written down at all.
+
+# Amendment — 2026-11-10
+
+*The decision stands for the library. It was written for one product with one
+audience, and there are now two.*
+
+**What it got right and keeps.** The plugin remains the only way to **install**
+the library. Nothing is copied into a host project to make the skills work,
+nothing is symlinked into `.claude/skills`, and profile resolution is unchanged:
+project first, then user scope, then nothing. The reasoning in
+[T0010](../../example/tasks/formalize/T0010-decide-whether-the-brain-ships-as-a-claude.md)
+holds — two mechanisms supplying the same skills is a conflict, not a
+convenience.
+
+**What it did not anticipate.** This repository is also a **workshop**. A person
+clones it, runs a guided process against their own writing, and leaves with
+registers tuned to them, to copy wherever they like. That is G0005.
+
+Cloning a workshop is not a second install path for the library, and copying its
+output is not the library copying itself into a project. They are different
+artifacts moving for different reasons:
+
+| | installed | cloned |
+|---|---|---|
+| **the library** | plugin, user scope, generic craft | — |
+| **the workshop** | — | repository, run the process, keep the output |
+
+The original invariant said *"The plugin is the only install path"*. Read now as:
+the plugin is the only install path **for the library**. The workshop is not
+installed at all.
+
+**Why this was worth amending rather than resisting.** The decision assumed the
+artifact was the valuable thing and distribution was the problem to solve. A day
+of measurement says otherwise — the described profile lost 0/6 on prose, one of
+its markers was withdrawn as harmful, and the only unambiguous success recorded
+was a rule from the *process* transferring to a writer who had never seen the
+operator. Shipping the output and keeping the process private had it backwards.
+
+**What stays unresolved.** Whether the workshop's generated registers are
+profiles read by generic skills, as
+[D0013](D0013-the-craft-ships-generic-and-the-voice-is.md) requires, or skills
+with a voice baked into them. D0013's separation was bought to keep craft
+improvements reaching people who already installed, and baking a voice into a
+copied skill forfeits that. The recommendation on record is profiles; it is not
+yet a decision.
