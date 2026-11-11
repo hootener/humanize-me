@@ -60,6 +60,22 @@ else's voice into the corpus.
 
 Every multi-author source gets checked per item.
 
+**And ask which parts they wrote.** Authorship is not all-or-nothing in
+collaborative work. One author on a three-author paper identified the specific
+sections he had written — about 3,000 words inside a 9,000-word paper where he
+was third author, and therefore a source that a byline check alone would have
+discarded entirely. Only the person can answer this, so ask rather than infer
+from position.
+
+**Watch for house style masquerading as voice.** The more gatekept a source, the
+less of the author survives in it. Measured on one writer: his peer-reviewed
+papers carry near-zero first person and heavy passive construction, and his own
+public incident post-mortem — same register, same demand for evidence — runs 35
+times the first person and a fifth of the passive. The papers are accurate
+measurements of prose he wrote, and they describe the journal rather than the
+person. Record which sources passed an editor, a reviewer or a style guide, and
+weight them accordingly.
+
 ### Sanity-check every marker that surprises you
 
 A semicolon rate fifteen times expected was bot tables. A heading count twice

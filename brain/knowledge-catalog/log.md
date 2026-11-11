@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-11
 
+**Creation** — [T0023](../tasks/voice/T0023-build-the-precise-register-profile.md) Build the precise register profile
+
 **Creation** — [D0027](decisions/D0027-three-generic-voice-skills-ship-and-nothing-personal.md) Three generic voice skills ship and nothing personal does
 
 **Creation** — [D0026](decisions/D0026-every-move-in-a-profile-carries-a-frequency.md) Every move in a profile carries a frequency
