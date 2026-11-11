@@ -14,4 +14,4 @@ Tasks for the **voice** initiative. `brain/bin/status voice` shows what is claim
 | [T0018](T0018-diagnose-why-the-no-guidance-control-outranked-the.md) | Testing | Diagnose why the no-guidance control outranked the profile on prose |
 | [T0019](T0019-stop-voice-rewriting-from-deleting-content.md) | Testing | Stop voice rewriting from deleting content |
 | [T0020](T0020-make-the-repository-honest-enough-to-open-source.md) | In Progress | Make the repository honest enough to open source |
-| [T0021](T0021-build-the-voice-workshop.md) | Not Ready | Build the voice workshop |
+| [T0021](T0021-build-the-voice-workshop.md) | In Progress | Build the voice workshop |

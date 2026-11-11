@@ -4,6 +4,8 @@ Newest first. `**Creation**` / `**Update**` / `**Supersession**`.
 
 ## 2026-11-11
 
+**Creation** — [E0012](reference/E0012-unedited-professional-writing-contradicts-three-absolutes-in-the.md) Unedited professional writing contradicts three absolutes in the profile
+
 **Creation** — [T0021](../tasks/voice/T0021-build-the-voice-workshop.md) Build the voice workshop
 
 **Creation** — [S0001](specs/S0001-the-voice-workshop.md) The voice workshop
