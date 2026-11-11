@@ -27,7 +27,7 @@ improvised one without opening `brain/`.
 
 - [x] `/voice-harvest` exists, carries the ask-what-is-wrong rule with the
       measurement behind it, and states what it cannot do
-- [ ] `/voice-gather` refuses an unusable corpus out loud rather than mining it
+- [x] `/voice-gather` refuses an unusable corpus out loud rather than mining it
 - [ ] `/voice-draft` derives per population and per register, and ships no
       floors
 - [ ] `/voice-check` gates nothing
@@ -72,3 +72,39 @@ writing at chance.
 Listed in `plugin.json`. It holds no fact about any person, so it ships under
 [D0013](../../knowledge-catalog/decisions/D0013-the-craft-ships-generic-and-the-voice-is.md)
 like any other generic skill, and a clone has it too.
+
+## 2026-11-11 — `/voice-gather` built, second in evidence order
+
+150 lines. It opens by stating its own evidence level as **low** — assembled
+from one person's corpus gathered by hand over two days, untested on anyone
+else — because a workshop that presents an improvised step as a proven one is
+the failure [S0001](../../knowledge-catalog/specs/S0001-the-voice-workshop.md)
+exists to avoid.
+
+Its first and longest section is **prove they wrote it**, because every real
+failure was there and none was a thin corpus:
+
+- **Agent-authored text.** 30,739 words of it, one filter from the profile,
+  carrying em-dashes in 67% of items against 0% in the same person's pre-agent
+  writing. The instruction is to ask the person for the date they started using
+  agents — no heuristic beats that answer — and to apply the cut to the item's
+  own timestamp, since a 2026 comment on a 2023 issue is still agent-era.
+- **Bot-authored text.** 136 of 224 comments were a coverage bot posting under
+  a human account, and they pushed the measured semicolon rate to fifteen times
+  his real one.
+- **Bylines**, after a co-founder's ten posts nearly entered the corpus.
+- **Sanity-check any marker that surprises you**, with both tool-manufactured
+  findings from 2026-11-10 named as the reason.
+
+It also carries the edited/unedited axis from
+[E0012](../../knowledge-catalog/reference/E0012-unedited-professional-writing-contradicts-three-absolutes-in-the.md)
+as a first-class sorting decision, the hold-out discipline with the specific way
+it was violated, and privacy as a gathering decision rather than a later one —
+including the instruction to refuse an unusable corpus out loud, with the 93%
+hiring-material repository as the worked case.
+
+Listed in `plugin.json`. Holds no fact about any person.
+
+**Not yet exercised.** The casual register is the test: it stands at 806 words
+and the operator is supplying more. Building the corpus through this skill
+rather than by hand is what S0001 asks for.

@@ -15,6 +15,7 @@
   ],
   "skills": [
     "./skills/voice-professional",
+    "./skills/voice-gather",
     "./skills/voice-harvest"
   ]
 }
