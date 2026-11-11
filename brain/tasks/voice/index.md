@@ -15,3 +15,4 @@ Tasks for the **voice** initiative. `brain/bin/status voice` shows what is claim
 | [T0019](T0019-stop-voice-rewriting-from-deleting-content.md) | Testing | Stop voice rewriting from deleting content |
 | [T0020](T0020-make-the-repository-honest-enough-to-open-source.md) | In Progress | Make the repository honest enough to open source |
 | [T0021](T0021-build-the-voice-workshop.md) | In Progress | Build the voice workshop |
+| [T0022](T0022-build-the-casual-register-profile.md) | Not Ready | Build the casual register profile |
