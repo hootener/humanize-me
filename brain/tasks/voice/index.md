@@ -13,7 +13,8 @@ Tasks for the **voice** initiative. `brain/bin/status voice` shows what is claim
 | [T0017](T0017-experiment-population-matched-exemplar-retrieval-versus-a-described.md) | Not Ready | Experiment: population-matched exemplar retrieval versus a described profile |
 | [T0018](T0018-diagnose-why-the-no-guidance-control-outranked-the.md) | Testing | Diagnose why the no-guidance control outranked the profile on prose |
 | [T0019](T0019-stop-voice-rewriting-from-deleting-content.md) | Testing | Stop voice rewriting from deleting content |
-| [T0020](T0020-make-the-repository-honest-enough-to-open-source.md) | In Progress | Make the repository honest enough to open source |
+| [T0020](T0020-make-the-repository-honest-enough-to-open-source.md) | Testing | Make the repository honest enough to open source |
 | [T0021](T0021-build-the-voice-workshop.md) | In Progress | Build the voice workshop |
 | [T0022](T0022-build-the-casual-register-profile.md) | In Progress | Build the casual register profile |
-| [T0023](T0023-build-the-precise-register-profile.md) | In Progress | Build the precise register profile |
+| [T0023](T0023-build-the-precise-register-profile.md) | Testing | Build the precise register profile |
+| [T0024](T0024-test-the-craft-skill-against-no-craft.md) | Not Ready | Test the craft skill against no craft, scored by named defects |

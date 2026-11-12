@@ -24,4 +24,7 @@ decision with no alternatives and no expiry. Superseded, never deleted.
 | [D0025](D0025-output-is-always-correctly-spelled-punctuated-and-capitalised.md) | decision | Output is always correctly spelled, punctuated and capitalised |
 | [D0026](D0026-every-move-in-a-profile-carries-a-frequency.md) | decision | Every move in a profile carries a frequency |
 | [D0027](D0027-three-generic-voice-skills-ship-and-nothing-personal.md) | decision | Three generic voice skills ship and nothing personal does |
-| [D0028](D0028-a-move-s-rate-is-set-per-register.md) | decision | A move's rate is set per register, not per profile |
+| [D0028](D0028-a-move-s-rate-is-set-per-register-not.md) | decision | A move's rate is set per register, not per profile |
+| [D0029](D0029-the-profile-file-format-is-a-contract-with.md) | decision | The profile file format is a contract with four consumers, so it gets a skill that writes it |
+| [D0030](D0030-personal-data-is-scrubbed-before-a-commit.md) | decision | Personal data is scrubbed before a commit, not before a release |
+| [D0031](D0031-the-shipping-metric-is-reader-burden-measured-as.md) | decision | The shipping metric is reader burden, measured as work the reader does |

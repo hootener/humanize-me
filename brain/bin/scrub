@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+"""Scan for personal data before it reaches history (D0030).
+
+Runs on staged files by default, so it can block a commit. `--all` audits
+every tracked file instead.
+
+What it is honest about: this catches the MECHANICAL categories — addresses
+that match a shape. It does NOT catch person names, client relationships, or
+quoted private conversation, because those have no reliable shape. Those need
+a person, and D0030 says so. A scrubber that implied otherwise would be the
+confident stale claim D0001 exists to prevent.
+
+No dependencies. Python 3 stdlib only, like everything else in bin/.
+"""
+import re, subprocess, sys, os
+
+RULES = [
+    ("email address",      re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b')),
+    ("phone number",       re.compile(r'(?<![\d.-])(?:\+?\d{1,2}[ .-])?\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}(?![\d-])')),
+    ("street address",     re.compile(r'\b\d{1,5}\s+[A-Z][a-z]+\s+(?:St|Street|Ave|Avenue|Rd|Road|Blvd|Lane|Ln|Dr|Drive|Way|Ct|Court)\b')),
+    ("US postcode+4",      re.compile(r'\b\d{5}-\d{4}\b')),
+    ("credential",         re.compile(r'(?i)\b(?:password|passwd|secret|api[_-]?key|access[_-]?token)\s*[:=]\s*\S')),
+    ("auth token",         re.compile(r'\b(?:ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{16})\b')),
+    ("private key",        re.compile(r'-----BEGIN (?:RSA |EC |OPENSSH |PGP )?PRIVATE KEY-----')),
+    ("home directory path",re.compile(r'(?:/Users/|/home/|C:\\\\Users\\\\)(?!<)[A-Za-z0-9._-]+')),
+    ("session transcript", re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.jsonl')),
+]
+
+# Shapes that match a rule and are not personal data. Keep this list short and
+# justified; every entry is a hole in the gate.
+ALLOW = [
+    re.compile(r'@example\.(?:com|org|net)\b'),          # lint/selftest fixtures
+    re.compile(r'@(?:domain|yourhost|company)\.'),        # documentation placeholders
+    re.compile(r'noreply@'),                              # commit trailers
+    re.compile(r'/Users/<[^>]+>|/home/<[^>]+>'),          # deliberately templated paths
+    re.compile(r'(?i)(?:api[_-]?key|token|secret|password)\s*[:=]\s*(?:<|\$|\{\{|"?(?:YOUR|xxx|\.\.\.|REDACTED))'),
+]
+
+SKIP_SUFFIX = ('.png','.jpg','.jpeg','.gif','.pdf','.zip','.gz','.ico','.woff','.woff2','.mp4')
+
+def files(all_tracked):
+    cmd = (['git','ls-files'] if all_tracked
+           else ['git','diff','--cached','--name-only','--diff-filter=ACMR'])
+    out = subprocess.run(cmd, capture_output=True, text=True).stdout
+    return [f for f in out.splitlines() if f and not f.endswith(SKIP_SUFFIX)]
+
+def scan(path):
+    try:
+        with open(path, encoding='utf-8', errors='replace') as fh:
+            lines = fh.read().splitlines()
+    except (OSError, IsADirectoryError):
+        return []
+    hits = []
+    for n, line in enumerate(lines, 1):
+        if len(line) > 4000:            # generated blobs: check, do not print
+            line_disp = line[:200] + ' …'
+        else:
+            line_disp = line
+        for label, rx in RULES:
+            for m in rx.finditer(line):
+                frag = m.group(0)
+                if any(a.search(line[max(0,m.start()-30):m.end()+30]) for a in ALLOW):
+                    continue
+                hits.append((n, label, frag, line_disp.strip()[:110]))
+    return hits
+
+def main():
+    all_tracked = '--all' in sys.argv
+    found = 0
+    for f in files(all_tracked):
+        if not os.path.exists(f):
+            continue
+        for n, label, frag, ctx in scan(f):
+            if found == 0:
+                print("\n  PERSONAL DATA FOUND — commit blocked (D0030)\n")
+            found += 1
+            print(f"  {f}:{n}")
+            print(f"    {label}: {frag}")
+            print(f"    | {ctx}\n")
+    scope = "tracked" if all_tracked else "staged"
+    if found:
+        print(f"  {found} finding(s) in {scope} files.\n")
+        print("  Remove it, or if it is a false positive add a justified entry to")
+        print("  ALLOW in brain/bin/scrub. Do not bypass with --no-verify: once")
+        print("  this is in history it is in history.\n")
+        return 1
+    n = len(files(all_tracked))
+    print(f"  scrub: {n} {scope} file(s), no personal data of a detectable shape.")
+    if all_tracked:
+        print("  Person names, client relationships and quoted private conversation")
+        print("  have no reliable shape and are NOT checked here — those need a read.")
+    return 0
+
+if __name__ == '__main__':
+    sys.exit(main())
