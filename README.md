@@ -125,10 +125,39 @@ as linked Markdown, and you can browse that directory if you'd like. For how a
 brain of this kind works in general, see https://github.com/hootener/brain.
 REFERENCES.md lists the published research that informs this project.
 
+## What Has Been Measured
+
+Some of this has evidence behind it and some of it does not. The line matters if
+you're deciding whether to install it.
+
+**The harvest works.** Four rounds of generating passages and asking a writer
+what is wrong with each one produced 75 specific rules. That is the method
+`voice-harvest` implements, and it is the part of this project I would defend.
+
+**Asking which version is better does not work**, which is why nothing here does
+that. In the six prose trials I picked my own published writing out of a lineup
+2 times in 6 -- chance -- and my own prose came out worst of the three arms on
+average. People are bad at recognising their own voice, so asking them to rank
+measures something other than what you wanted.
+
+**A profile helps structure more than prose.** Across nine blind trials a voice
+profile beat a no-guidance control 3 of 3 on headings and 0 of 6 on prose. That
+split was found after the fact and the trial was small, so treat it as a lead
+rather than a result. One of that profile's own markers turned out to make
+output measurably worse than giving no instruction at all, and was withdrawn.
+
+**The craft skill -- the part you install -- has no controlled trial behind
+it.** Those trials tested a personal voice profile, which is not what ships.
+`voice-gather` states its own evidence level as low; `voice-draft` has one test
+against an unguided control and nothing else.
+
+Every number, retraction and experiment is in `brain/`, including the ones that
+went the wrong way. REFERENCES.md cites the published work the design rests on.
+
 ## Status
 
-The project is MIT licensed and a work in progress. All three voices exist and
-have been through review against real writing. The precise one has had one round
-where the other two have had more, so I'd trust it least of the three.
+MIT licensed, and a work in progress. All three voices exist and have been
+through review against real writing. The precise one has had one round where the
+other two have had more, so I'd trust it least of the three.
 
 Try it on something a person is actually going to read.
