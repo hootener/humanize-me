@@ -22,3 +22,4 @@ than gathered carries `resource:`. A plain measurement carries none.
 | [E0013](E0013-the-precise-harvest-produced-the-lowest-defect-rate.md) | active | The precise harvest produced the lowest defect rate of four, and two findings that contradict the profile it tested |
 | [E0014](E0014-voice-draft-changed-every-drafting-behaviour-it-claims.md) | active | voice-draft changed every drafting behaviour it claims to, against a control that was better than predicted |
 | [E0015](E0015-classical-readability-formulas-rank-agent-prose-above-the.md) | active | Classical readability formulas rank agent prose above the human writing it is trying to sound like |
+| [E0016](E0016-no-automated-proxy-earned-screening-status-and-pooling.md) | active | No automated proxy earned screening status, and pooling both hid a signal and manufactured one |

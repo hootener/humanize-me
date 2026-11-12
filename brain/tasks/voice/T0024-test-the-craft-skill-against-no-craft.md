@@ -50,6 +50,26 @@ the endpoint is reader burden, not resemblance.
 - [ ] Result recorded as evidence whichever way it goes, including a null
 - [ ] Readability formulas reported as a guard-rail and not as a result
 
+# Calibration run, 2026-11-12 — done, and it came back null
+
+Before building the trial, nine automated metrics were tested against 18
+passages already judged across three harvests, to see whether any could screen
+candidates cheaply. **None met the pre-registered bar**
+([E0016](../../knowledge-catalog/reference/E0016-no-automated-proxy-earned-screening-status-and-pooling.md)).
+
+Three things carry into the design here:
+
+- **There is no cheap screen.** The human endpoint is the endpoint. Budget the
+  judge's attention accordingly rather than planning to pre-filter arms.
+- **Report repetition (`repeated_4grams`) beside the result.** It is the only
+  metric with a consistent direction across all three harvests (+0.45, +0.60,
+  +0.85) and the only one that moves the right way where the formulas move
+  backwards. Not significant at n = 6, so it is reported, never relied on.
+- **Never pool across registers, including in the guard-rails.** In the same
+  dataset, pooling deflated the one real lead below its own worst subgroup and
+  manufactured the table's only significant result out of a register
+  difference.
+
 # Open question that gates this
 
 **Who judges.** Both of D0031's primary measures need a reader who is not the
