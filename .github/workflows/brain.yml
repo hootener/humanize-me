@@ -37,6 +37,12 @@ jobs:
       - name: scrub
         run: $BRAIN/bin/scrub --all
 
+      # Folder indexes are committed and generated, so they drift silently:
+      # a stale index looks exactly like a current one, and three of them were
+      # stale when this step was added.
+      - name: indexes match their folders
+        run: $BRAIN/bin/index --check
+
       - name: lint
         run: $BRAIN/bin/lint
 

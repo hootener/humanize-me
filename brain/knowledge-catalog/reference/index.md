@@ -19,3 +19,6 @@ than gathered carries `resource:`. A plain measurement carries none.
 | [E0010](E0010-a-pooled-marker-floor-pushed-output-away-from.md) | active | A pooled marker floor pushed output away from the operator's real register |
 | [E0011](E0011-eight-defect-harvest-passages-produced-nine-rules-where.md) | active | Eight defect-harvest passages produced nine rules where nine rankings produced one |
 | [E0012](E0012-unedited-professional-writing-contradicts-three-absolutes-in-the.md) | active | Unedited professional writing contradicts three absolutes in the profile |
+| [E0013](E0013-the-precise-harvest-produced-the-lowest-defect-rate.md) | active | The precise harvest produced the lowest defect rate of four, and two findings that contradict the profile it tested |
+| [E0014](E0014-voice-draft-changed-every-drafting-behaviour-it-claims.md) | active | voice-draft changed every drafting behaviour it claims to, against a control that was better than predicted |
+| [E0015](E0015-classical-readability-formulas-rank-agent-prose-above-the.md) | active | Classical readability formulas rank agent prose above the human writing it is trying to sound like |
