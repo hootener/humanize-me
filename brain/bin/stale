@@ -202,10 +202,16 @@ def claims(line, value, literal, nouns):
         for m in re.finditer(pattern, line, re.I):
             # A number inside a path or an identifier is a reference, not a
             # count: `decisions/0013-ask-the-venue` is not thirteen decisions.
-            before = line[max(0, m.start() - 1):m.start()]
-            after = line[m.start() + len(literal):m.start() + len(literal) + 1]
+            before = line[m.start() - 1] if m.start() else ''
+            end = m.start() + len(literal)
+            after = line[end] if end < len(line) else ''
 
-            if before in '/-_.' or after in '/-_':
+            # Single characters, explicitly. These were slices, and an empty
+            # slice at the start or end of a line satisfies `in '/-_.'` —
+            # Python says "" is in every string — so a count that opened a
+            # line was skipped without being checked. "22 decisions" as a
+            # whole line reported nothing, ever.
+            if (before and before in '/-_.') or (after and after in '/-_'):
                 continue
 
             if LIMITED.search(line[:m.start()]):
@@ -233,11 +239,26 @@ def targets():
                         yield os.path.join(base, name)
 
 
+# A comma-grouped figure — 1,830 — is a quantity from outside this repository:
+# a dataset size, a corpus, a sample. It is never a count of this brain's own
+# decisions or tickets, which is why `\d{1,4}` caps the plain case at four
+# digits in the first place.
+#
+# It also has to be excluded explicitly, because a comma is a word boundary.
+# `\b\d{1,4}\b` read "1,830 tasks across" in an EMNLP citation as a claim of
+# 830 tickets and failed CI on it. The number reported was never in the text.
+GROUPED = re.compile(r'\b\d{1,3}(?:,\d{3})+\b')
+
+
 def numbers_in(text):
     """Every number in a line, digits or words, with where it sits."""
     found = []
 
+    spans = [(m.start(), m.end()) for m in GROUPED.finditer(text)]
+
     for m in re.finditer(r'\b(\d{1,4})\b', text):
+        if any(lo <= m.start() and m.end() <= hi for lo, hi in spans):
+            continue
         found.append((int(m.group(1)), m.start(), m.end(), m.group(1)))
 
     for word, value in WORDS.items():
