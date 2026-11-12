@@ -62,15 +62,17 @@ jobs:
       - name: selftest
         run: $BRAIN/bin/selftest
 
-      # graph.html is a generated file that is committed, so it goes stale
-      # silently — a stale graph looks exactly like a current one.
+      # graph.html is generated and deliberately NOT committed (D0030): it
+      # embeds the whole brain as JSON, so a committed copy duplicates every
+      # redaction and goes stale silently.
       #
-      # `--check` rather than rebuild-and-diff: every build stamps a fresh
-      # `generated` time and the whole payload is one line, so a plain diff
-      # reports the file as changed on every run. That check would have failed
-      # forever while looking like a real finding.
-      - name: graph is current
-        run: $BRAIN/bin/graph-build --check
+      # So CI builds it rather than checking it is current. That still proves
+      # the generator runs against the real catalog — which is what the old
+      # `--check` was really worth — and it cannot fail for the one reason a
+      # rebuild-and-diff always would, that every build stamps a fresh
+      # `generated` time into a single-line payload.
+      - name: graph builds
+        run: $BRAIN/bin/graph-build
 
       # Reported, never enforced: which decisions govern the files this change
       # touches. Writes to the run summary, so it needs no token and no
