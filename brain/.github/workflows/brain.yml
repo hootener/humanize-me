@@ -34,6 +34,9 @@ jobs:
       # The gate. Errors fail the build; warnings never do — an unresolved link
       # is a valid marker of future work, and failing on one would teach people
       # to stop writing them.
+      - name: scrub
+        run: $BRAIN/bin/scrub --all
+
       - name: lint
         run: $BRAIN/bin/lint
 

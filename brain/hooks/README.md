@@ -6,9 +6,14 @@ that cannot be forgotten, because nobody has to remember it.
 
 | Hook | Runs | Does |
 |---|---|---|
+| `pre-commit` | before every commit | blocks a commit carrying personal data of a detectable shape ([D0030](../knowledge-catalog/decisions/D0030-personal-data-is-scrubbed-before-a-commit.md)) |
 | `post-commit` | after every commit | prints status drift the repository contradicts, and the decisions governing the files just changed |
 
-Both of its rules matter more than what it checks:
+`pre-commit` is the one hook that blocks, and the asymmetry is why: a wrong
+status is corrected by the next commit, while an email address in history is
+corrected by rewriting history on every clone that already pulled it.
+
+The post-commit hook's two rules matter more than what it checks:
 
 1. **It never guesses semantics.** Anything ambiguous is left for `/audit`. Its
    whole value is that its output can be trusted unread, and one wrong guess
@@ -22,7 +27,8 @@ Both of its rules matter more than what it checks:
 not shared with the team, not committed — so removing it is deleting that file.
 
 ```bash
-ln -sf ../../brain/hooks/post-commit .git/hooks/post-commit   # by hand
+ln -sf ../../brain/hooks/pre-commit  .git/hooks/pre-commit    # by hand
+ln -sf ../../brain/hooks/post-commit .git/hooks/post-commit
 ```
 
 ## Claude Code

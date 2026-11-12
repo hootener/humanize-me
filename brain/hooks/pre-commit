@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Blocks a commit carrying personal data (D0030).
+#
+# This one DOES block, which makes it the exception to the rule the
+# post-commit hook follows. The reason is asymmetry: a wrong status in the
+# record is corrected by the next commit, and an email address in history is
+# corrected by rewriting history on every clone that already pulled it. The
+# cheap moment to catch it is the only moment.
+#
+# Installed by `bin/adopt` into .git/hooks/pre-commit, or by hand:
+#   ln -sf ../../brain/hooks/pre-commit .git/hooks/pre-commit
+set -u
+
+root=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+for d in "$root" "$root/brain"; do
+  if [ -x "$d/bin/scrub" ]; then
+    "$d/bin/scrub" || {
+      echo "  To override for a verified false positive, add it to ALLOW in"
+      echo "  $d/bin/scrub — not with --no-verify."
+      exit 1
+    }
+    exit 0
+  fi
+done
+exit 0
