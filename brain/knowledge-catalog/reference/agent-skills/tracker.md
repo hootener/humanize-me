@@ -82,8 +82,8 @@ last.
 
 - **Create an issue**: write `brain/tasks/<initiative>/NNN-<slug>.md` from the template, add it to
   the initiative `index.md`.
-- **Read an issue**: read the file. References are paths; "subcontractors 003" means
-  `brain/tasks/subcontractors/003-*.md`.
+- **Read an issue**: read the file. References are paths; "onboarding 003" means
+  `brain/tasks/onboarding/003-*.md`.
 - **List issues**: `brain/bin/status [initiative]`, or scan frontmatter.
 - **Comment**: append under `# Log`.
 - **Change state**: edit `status`; see [triage-labels.md](triage-labels.md) for the role mapping.

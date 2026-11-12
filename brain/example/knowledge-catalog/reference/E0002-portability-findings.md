@@ -35,7 +35,7 @@ document is the answer as of 30 October, written while doing it. The template no
 | `bin/change`, `bin/pin`, `bin/security` | entirely about the host app's test harness, PHP pins and prompt-fence invariants | not ported; they are the shape of project-specific checks, not generic ones |
 | `/grill-change` | cited the first project's decision numbers, counts and failure history in its prose | generic prose; project-specific pitfalls now come from [E0001](E0001-brain-in-practice.md) |
 | `/spec-review`, `/interrogate` | one worked example each from the first project; a vocabulary blacklist from its domain | example made anonymous; blacklist points at the glossary's `_Avoid_` notes |
-| `/domain-modeling`, `/to-tasks` (from smart-labor-management) | named `backend-api` and `slm-light` | host repo named generically |
+| `/domain-modeling`, `/to-tasks` (from a host project) | named `backend-api` and `slm-light` | host repo named generically |
 | `reference/agent-skills/domain.md` | "the distilled code carries no agent-facing documentation" | "the host repository's own CLAUDE.md / CONTEXT.md are read, not written" |
 | Skill location | reference keeps skills at `<project>/.claude/skills`, outside the brain | canonical in `brain/skills/`, symlinked |
 | `goals/` | taxonomy had `goal` with nowhere to put one | `knowledge-catalog/goals/` with an index; `plan`, `goal`, `context` templates added |

@@ -6,7 +6,7 @@ description: "The library is made installable before the operator's own voice se
 timestamp: "2026-11-08"
 tags: [sequencing, adoption, imported]
 status: draft
-resource: "~/.claude/projects/-Users-hootener-Source-hootener-humanize-me/fd429e6f-6113-4db7-b8d7-43a91509d077.jsonl (operator utterance, [answered] — an AskUserQuestion result, via bin/utterances)"
+resource: "operator utterance, 2026-11-08, in the session that opened this project"
 serves: ../goals/G0002-humanize-me-installs-into-another-project-in-one.md
 invariant: "The operator's own voice setup is built through the same install path an outside project would use."
 constrains: [skills]

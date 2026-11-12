@@ -2,8 +2,8 @@
 """Render a self-contained HTML handoff for one initiative and one discipline.
 
 Usage:
-    brain/bin/handoff subcontractors --for engineering
-    brain/bin/handoff subcontractors --for design --check
+    brain/bin/handoff onboarding --for engineering
+    brain/bin/handoff onboarding --for design --check
     brain/bin/handoff --list
 
 Exit 1 only when the brain is in no state to produce an honest handoff.

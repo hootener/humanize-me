@@ -114,8 +114,7 @@ is verified by markers only, and its own `verified:` field says exactly that.
 # Citations
 
 - `~/.claude/voice/profile/professional.md`, built 2026-11-09
-- `smart-labor-management/brain/plans/subcontractor-paperwork/handoff.html` and
-  `smart-labor-management/brain/plans/subcontractors/map-handoff.html`,
+- Two client-facing feature walkthroughs in a separate client project,
   rewritten 2026-11-09; originals preserved as `.bak` beside each, that project
-  being outside version control
+  being outside version control. The documents are not reproduced here
 - [T0015](../../tasks/voice/T0015-build-the-professional-profile-from-real-samples-and.md)

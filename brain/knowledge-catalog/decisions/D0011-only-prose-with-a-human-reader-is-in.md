@@ -6,7 +6,7 @@ description: "The voice skills govern prose written to be read by a person; text
 timestamp: "2026-11-08"
 tags: [scope, voice, imported]
 status: draft
-resource: "~/.claude/projects/-Users-hootener-Source-hootener-humanize-me/fd429e6f-6113-4db7-b8d7-43a91509d077.jsonl (operator utterance, [typed], via bin/utterances)"
+resource: "operator utterance, 2026-11-08, in the session that opened this project"
 invariant: "A voice skill in this library applies only where the output has a human reader."
 constrains: [skills]
 ---

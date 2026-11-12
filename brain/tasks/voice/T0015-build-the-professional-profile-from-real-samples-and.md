@@ -71,7 +71,7 @@ narrowing scope, not by softening verbs. Modal mush is nearly absent;
 everywhere. A craft rule that counted hedges would have stripped exactly the
 hedges that carry the information.
 
-**Applied** to two client-facing walkthroughs in `smart-labor-management`. The
+**Applied** to two client-facing walkthroughs in a separate client project. The
 map document passes 8 of 8 markers; the paperwork document passes 7 of 8.
 
 **The one failure is recorded, not fixed.** Sentence median 13 against a 15–22
